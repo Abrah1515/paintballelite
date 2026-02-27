@@ -1,0 +1,2212 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="PaintballElite.cz – organizace paintballových akcí pro veřejnost, firmy a školy. Hřiště VIETCONG a LAS VEGAS, ceník, poukázky, rezervace." />
+  <title>PaintballElite.cz – Paintball akce + poukázky + rezervace</title>
+
+  <style>
+    :root{
+      --bg:#070A12;
+      --bg2:#0A1020;
+      --surface: rgba(255,255,255,.06);
+      --surface2: rgba(255,255,255,.09);
+      --border: rgba(255,255,255,.12);
+      --border2: rgba(255,255,255,.18);
+      --text:#EAF0FF;
+      --muted:#C3CDE2;
+
+      --brand:#38AFE2;
+      --brand2:#22A6DF;
+      --accent:#FF6A3D;
+      --ok:#3DDC97;
+
+      --shadow: 0 24px 60px rgba(0,0,0,.55);
+      --shadow-soft: 0 14px 40px rgba(0,0,0,.35);
+
+      --radius: 20px;
+      --radius-sm: 14px;
+      --max: 1180px;
+
+      --header-offset: 118px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(900px 600px at 12% -10%, rgba(56,175,226,.18) 0%, transparent 60%),
+        radial-gradient(800px 520px at 92% 10%, rgba(255,106,61,.12) 0%, transparent 55%),
+        radial-gradient(900px 600px at 30% 110%, rgba(34,166,223,.08) 0%, transparent 60%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      line-height:1.55;
+    }
+    img{max-width:100%;display:block}
+    a{color:inherit}
+    .container{max-width:var(--max); margin:0 auto; padding:0 18px}
+    .section{padding:78px 0}
+    .grid{display:grid; gap:16px}
+    .grid-2{grid-template-columns: 1.05fr .95fr}
+    .grid-3{grid-template-columns: repeat(3,1fr)}
+    .grid-4{grid-template-columns: repeat(4,1fr)}
+
+    @media (max-width: 1100px){
+      .grid-4{grid-template-columns: repeat(2,1fr)}
+    }
+    @media (max-width: 980px){
+      :root{ --header-offset: 92px; }
+      .grid-2,.grid-3{grid-template-columns:1fr}
+      .grid-4{grid-template-columns:1fr}
+      .section{padding:58px 0}
+    }
+    @media (max-width: 560px){
+      .container{padding:0 14px}
+      .section{padding:52px 0}
+    }
+
+    .h1{font-size: clamp(34px, 4.2vw, 58px); line-height:1.04; margin:0 0 12px; letter-spacing:-.03em}
+    .h2{font-size: clamp(22px, 2.6vw, 36px); margin:0 0 10px; letter-spacing:-.02em}
+    .h3{font-size: 18px; margin:0 0 8px}
+    .lead{font-size: 16px; color:var(--muted); margin:0}
+    .muted{color:var(--muted)}
+    .small{font-size: 13px; color:var(--muted)}
+    .anchor{scroll-margin-top: var(--header-offset);}
+
+    .glass{
+      background: rgba(255,255,255,.08);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .divider{height:1px;background:var(--border);margin:14px 0}
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      border-radius: 999px;
+      padding: 12px 16px;
+      font-weight: 900;
+      text-decoration:none;
+      border: 1px solid transparent;
+      cursor:pointer;
+      user-select:none;
+      transition: transform .12s ease, filter .12s ease, background .12s ease, border-color .12s ease, opacity .12s ease;
+      white-space:nowrap;
+    }
+    .btn:active{transform: translateY(1px)}
+    .btn-primary{
+      background: linear-gradient(135deg, var(--brand) 0%, var(--brand2) 60%);
+      color:#fff;
+      box-shadow: 0 18px 40px rgba(56,175,226,.22);
+    }
+    .btn-primary:hover{filter:brightness(1.02)}
+    .btn-secondary{
+      background: rgba(255,255,255,.08);
+      color: var(--text);
+      border-color: var(--border2);
+    }
+    .btn-secondary:hover{border-color: rgba(255,255,255,.28)}
+    .btn-outline{
+      background: rgba(0,0,0,.16);
+      border-color: var(--border2);
+      color: var(--text);
+    }
+    .btn-outline:hover{border-color: rgba(56,175,226,.45)}
+    .btn-danger{background: linear-gradient(135deg, #ff5a5f, #ff3b3f); color:#fff}
+    .btn-danger:hover{filter:brightness(1.02)}
+    .btn[disabled]{opacity:.55; cursor:not-allowed}
+
+    :focus-visible{
+      outline: 2px solid rgba(56,175,226,.55);
+      outline-offset: 2px;
+      border-radius: 14px;
+    }
+
+    .card{padding: 18px}
+
+    .topbar{
+      position: sticky;
+      top:0;
+      z-index: 60;
+      background: rgba(7,10,18,.72);
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .topbar__inner{
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+      padding: 12px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      text-decoration:none;
+      color:#fff;
+      min-width: 220px;
+    }
+    .brand__logo{
+      width: 160px;
+      height: 44px;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 22px rgba(0,0,0,.55));
+    }
+    .topinfo{
+      display:flex; flex-wrap:wrap; gap:10px 18px; align-items:center; justify-content:flex-end;
+      text-align:right;
+      font-weight:800;
+      color: rgba(234,240,255,.86);
+    }
+    .topinfo span{display:inline-flex; gap:8px; align-items:center}
+    .topinfo a{color:#fff; text-decoration:none}
+    .topinfo a:hover{text-decoration:underline}
+
+    .navwrap{
+      border-top: 1px solid rgba(255,255,255,.06);
+      border-bottom: 1px solid rgba(255,255,255,.10);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+      padding: 10px 0;
+    }
+    .navlinks{
+      display:flex; align-items:center;
+      gap: 6px;
+      flex-wrap:nowrap;
+      overflow:hidden;
+    }
+    .navlinks a{
+      color: rgba(234,240,255,.78);
+      text-decoration:none;
+      font-weight:900;
+      font-size: 13px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      display:inline-flex;
+      align-items:center;
+      white-space:nowrap;
+      border: 1px solid transparent;
+    }
+    .navlinks a:hover{
+      color:#fff;
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.10);
+    }
+    .navcta{display:flex; gap:10px; align-items:center}
+
+    .burger{
+      display:none;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.16);
+      color:#fff;
+      border-radius: 14px;
+      padding: 10px 12px;
+      font-weight: 950;
+      cursor:pointer;
+    }
+
+    @media (max-width: 980px){
+      .navlinks{display:none}
+      .burger{display:inline-flex}
+      .brand{min-width:auto}
+      .topinfo{display:none}
+      .topbar__inner{padding: 10px 0}
+      .brand__logo{width: 150px; height: 40px}
+      .nav{padding: 8px 0}
+    }
+
+    .drawer{
+      display:none;
+      position:fixed; inset:0;
+      background: rgba(0,0,0,.62);
+      z-index: 80;
+      padding: 14px;
+    }
+    .drawer[aria-hidden="false"]{display:block}
+    .drawer__panel{
+      max-width: 520px;
+      margin-left:auto;
+      height: 100%;
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow: var(--shadow);
+      padding: 14px;
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      background: rgba(255,255,255,.08);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .drawer__top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .drawer__close{
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.18);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-weight: 950;
+      cursor:pointer;
+    }
+    .drawer__links{display:flex; flex-direction:column; gap:8px}
+    .drawer__links a{
+      text-decoration:none;
+      font-weight: 950;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.14);
+      color: var(--text);
+    }
+
+    .hero{
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      overflow:hidden;
+      position: relative;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(1200px 700px at 20% 0%, rgba(56,175,226,.12), transparent 60%);
+      pointer-events:none;
+      opacity: .9;
+    }
+    .hero__inner{
+      position:relative;
+      padding: 62px 0 58px;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+      align-items:center;
+    }
+    @media (max-width: 980px){
+      .hero__inner{grid-template-columns:1fr; padding: 46px 0 46px}
+    }
+    .hero__panel{padding: 22px}
+    .hero__media{
+      border-radius: var(--radius);
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow: var(--shadow);
+      min-height: 380px;
+      background:
+        linear-gradient(135deg, rgba(7,10,18,.60), rgba(7,10,18,.25)),
+        url("https://www.paintballelite.cz/wp-content/uploads/2025/04/onas2-EDIT.jpg");
+      background-size: cover;
+      background-position:center;
+      position:relative;
+    }
+
+    .hero__bullets{display:flex; flex-wrap:wrap; gap:10px; margin: 14px 0 0}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      border-radius: 999px;
+      padding: 9px 12px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.12);
+      font-weight: 900;
+      font-size: 13px;
+      color: rgba(234,240,255,.92);
+    }
+    .hero__actions{display:flex; flex-wrap:wrap; gap:10px; margin-top: 18px}
+    .kpis{display:grid; grid-template-columns: repeat(3,1fr); gap:12px; margin-top:16px}
+    @media (max-width: 980px){ .kpis{grid-template-columns:1fr} }
+    .kpi{
+      border:1px solid rgba(255,255,255,.14);
+      border-radius: 14px;
+      background: rgba(255,255,255,.06);
+      padding: 12px;
+      font-weight: 950;
+      color: var(--text);
+    }
+    .kpi span{display:block; font-weight:800; color:var(--muted); font-size: 13px; margin-top:4px}
+
+    .price{
+      font-weight: 950;
+      font-size: 30px;
+      letter-spacing:-.02em;
+      margin: 8px 0 0;
+      color: var(--text);
+    }
+    .badge-top{
+      display:inline-flex; align-items:center; gap:8px;
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: rgba(56,175,226,.14);
+      border: 1px solid rgba(56,175,226,.28);
+      font-weight: 950;
+      font-size: 12px;
+      color: rgba(234,240,255,.95);
+    }
+    .list{
+      margin: 12px 0 0; padding:0; list-style:none;
+      color: var(--muted);
+      display:flex; flex-direction:column; gap:8px;
+    }
+    .list li{display:flex; gap:10px}
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: var(--brand);
+      margin-top: 6px;
+      flex:0 0 auto;
+      box-shadow: 0 10px 22px rgba(56,175,226,.22);
+    }
+
+    .shop-grid{display:grid; grid-template-columns: repeat(3,1fr); gap:16px}
+    @media (max-width: 980px){ .shop-grid{grid-template-columns:1fr} }
+    .product-card{display:flex; flex-direction:column; gap:12px; height:100%;}
+    .product-thumb{
+      border-radius: 16px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      aspect-ratio: 16/10;
+      background:
+        radial-gradient(700px 320px at 15% 15%, rgba(56,175,226,.22), transparent 55%),
+        linear-gradient(135deg, rgba(0,0,0,.35), rgba(0,0,0,.10));
+      position:relative;
+    }
+    .product-thumb img{width:100%; height:100%; object-fit:cover; opacity:.95}
+    .tag{
+      position:absolute;
+      left:12px; top:12px;
+      background: rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-weight: 950;
+      font-size: 12px;
+      color: rgba(234,240,255,.95);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .prod-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:auto}
+    .prod-price{font-weight:950; color:var(--text); font-size:18px}
+    .prod-meta{display:grid; gap:8px}
+    .inline{display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+    .inline input{width: 220px;}
+
+    .cartbtn{
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 70;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.08);
+      color: var(--text);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .cartbtn b{
+      background: rgba(0,0,0,.26);
+      border:1px solid rgba(255,255,255,.18);
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 12px;
+      color: rgba(234,240,255,.95);
+    }
+    @media (max-width: 980px){
+      .cartbtn{display:none}
+    }
+
+    .modal{
+      display:none;
+      position:fixed;
+      inset:0;
+      z-index: 90;
+      background: rgba(0,0,0,.68);
+      padding: 14px;
+    }
+    .modal[aria-hidden="false"]{display:block}
+    .modal__panel{
+      max-width: 860px;
+      margin: 0 auto;
+      height: min(92vh, 920px);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      background: rgba(255,255,255,.08);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .modal__head{
+      padding: 14px 16px;
+      background: rgba(0,0,0,.18);
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .modal__body{
+      padding: 16px;
+      overflow:auto;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 16px;
+    }
+    @media (max-width: 980px){
+      .modal__body{grid-template-columns:1fr}
+    }
+    .close{
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.18);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-weight: 950;
+      cursor:pointer;
+    }
+
+    .cartline{
+      border:1px solid rgba(255,255,255,.14);
+      border-radius: 14px;
+      padding: 12px;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap: 12px;
+      background: rgba(0,0,0,.14);
+    }
+    @media (max-width: 560px){
+      .cartline{flex-direction:column}
+      .cartline > div:last-child{justify-items:start}
+    }
+
+    .qty{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      white-space:nowrap;
+    }
+    .qty button{
+      width:34px; height:34px;
+      border-radius: 12px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      font-weight: 950;
+      cursor:pointer;
+    }
+    .qty input{
+      width:56px;
+      padding: 8px 8px;
+      text-align:center;
+      border-radius: 12px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.18);
+      color: var(--text);
+    }
+
+    input, select, textarea{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 12px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+      color: var(--text);
+      font: inherit;
+      outline: none;
+    }
+    input::placeholder, textarea::placeholder{color: rgba(195,205,226,.70)}
+    select{color: var(--text)}
+    label{display:block; font-weight: 900; font-size: 13px; color: rgba(234,240,255,.92)}
+    .field{display:grid; gap:6px}
+    .formgrid{display:grid; grid-template-columns: 1fr 1fr; gap:12px}
+    @media (max-width: 980px){ .formgrid{grid-template-columns:1fr} }
+
+    .hint{
+      padding:12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+    }
+
+    .footer{
+      border-top: 1px solid rgba(255,255,255,.10);
+      padding: 34px 0;
+      color: rgba(195,205,226,.85);
+      background: rgba(0,0,0,.12);
+    }
+    .footer a{color:#fff; text-decoration:none}
+    .footer a:hover{text-decoration:underline}
+    .footer__bottom{
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255,255,255,.12);
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      font-size: 13px;
+    }
+
+    .places-tabs{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top: 14px;
+    }
+    .tabbtn{
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.16);
+      color: rgba(234,240,255,.92);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-weight: 950;
+      cursor:pointer;
+    }
+    .tabbtn[aria-selected="true"]{
+      background: rgba(56,175,226,.18);
+      border-color: rgba(56,175,226,.35);
+      color:#fff;
+    }
+    .place-panel{ margin-top:16px; display:none; }
+    .place-panel.active{ display:block; }
+    .place-head{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-items:start;
+    }
+    @media (max-width: 980px){
+      .place-head{grid-template-columns:1fr}
+    }
+    .place-photo{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      overflow:hidden;
+      box-shadow: var(--shadow-soft);
+      background: rgba(0,0,0,.14);
+      min-height: 260px;
+    }
+    .place-photo img{width:100%; height:100%; object-fit:cover}
+    .place-details{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.14);
+      box-shadow: var(--shadow-soft);
+      padding: 14px;
+    }
+    .place-details h4{
+      margin: 0 0 6px;
+      font-size: 14px;
+      letter-spacing:.01em;
+      text-transform: uppercase;
+      color: rgba(195,205,226,.95);
+    }
+    .place-details p{margin: 0 0 12px; color: var(--muted)}
+    .place-badges{display:flex; flex-wrap:wrap; gap:8px; margin: 10px 0 12px}
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      font-weight: 900;
+      font-size: 13px;
+      color: rgba(234,240,255,.92);
+    }
+
+    .section-title{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .mobilebar{
+      display:none;
+      position:fixed;
+      left:0; right:0; bottom:0;
+      z-index: 75;
+      padding: 10px 14px;
+      background: rgba(7,10,18,.72);
+      border-top: 1px solid rgba(255,255,255,.12);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .mobilebar__inner{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+    .mobilebar__inner .btn{flex:1}
+    .mobilebar__inner .btn-secondary{flex:0 0 auto}
+    .mobilebar__cart{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+    .mobilebar__cart b{
+      background: rgba(0,0,0,.26);
+      border:1px solid rgba(255,255,255,.18);
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 12px;
+      color: rgba(234,240,255,.95);
+    }
+    @media (max-width: 980px){
+      .mobilebar{display:block}
+      body{padding-bottom: 76px;}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *{scroll-behavior:auto}
+      .btn{transition:none}
+    }
+
+    .quote{
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+    }
+    .quote p{margin:0; color: rgba(234,240,255,.92)}
+    .quote .who{margin-top:8px; font-weight:950; color: var(--muted); font-size: 13px}
+
+    .kv{display:grid; gap:10px;}
+    .kv .row{display:flex; gap:12px; align-items:flex-start;}
+    .kv .k{min-width: 170px; font-weight: 950; color: rgba(234,240,255,.92);}
+    .kv .v{color: var(--muted);}
+
+    /* ====== O NÁS (KOMPAKT) ====== */
+    .about-hero{padding: 18px;}
+    .about-hero .meta{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px;}
+    .about-chip{
+      display:inline-flex; gap:8px; align-items:center;
+      padding: 9px 12px; border-radius: 999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.14);
+      font-weight: 900; font-size: 13px;
+      color: rgba(234,240,255,.92);
+    }
+    .stats{
+      display:grid;
+      grid-template-columns: repeat(3,1fr);
+      gap:12px;
+      margin-top:12px;
+    }
+    @media (max-width: 980px){ .stats{grid-template-columns:1fr} }
+    .stat{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(255,255,255,.06);
+      padding: 12px 14px;
+    }
+    .stat b{display:block; font-size: 18px; letter-spacing:-.01em;}
+    .stat span{display:block; margin-top:4px; color: var(--muted); font-size: 13px; font-weight: 800;}
+
+    .about-types{
+      display:grid;
+      grid-template-columns: repeat(2,1fr);
+      gap:12px;
+      margin-top:12px;
+    }
+    @media (max-width: 980px){ .about-types{grid-template-columns:1fr} }
+
+    /* Kompaktní bloky vpravo */
+    .compact-stack{display:grid; gap:12px}
+    .compact-actions{display:flex; gap:10px; flex-wrap:wrap}
+
+    /* Accordion (kompakt) */
+    .accordion{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.14);
+      overflow:hidden;
+    }
+    .accordion details{
+      border-top:1px solid rgba(255,255,255,.10);
+      padding: 12px 14px;
+    }
+    .accordion details:first-child{border-top:0}
+    .accordion summary{
+      cursor:pointer;
+      font-weight: 950;
+      list-style:none;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      color: rgba(234,240,255,.96);
+    }
+    .accordion summary::-webkit-details-marker{display:none}
+    .accordion summary .chev{
+      width:30px;height:30px;
+      border-radius: 12px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      display:grid;place-items:center;
+      color: rgba(234,240,255,.92);
+      font-weight: 950;
+      flex:0 0 auto;
+    }
+    .accordion details[open] summary .chev{background: rgba(56,175,226,.16); border-color: rgba(56,175,226,.30)}
+    .accordion .content{margin-top:10px; color: var(--muted)}
+    .kv2{display:grid; gap:10px;}
+    .kv2 .row{display:grid; grid-template-columns: 160px 1fr; gap: 12px;}
+    @media (max-width: 560px){ .kv2 .row{grid-template-columns:1fr} }
+    .kv2 .k{font-weight: 950; color: rgba(234,240,255,.92);}
+    .kv2 .v{color: var(--muted);}
+
+    .stepper{display:grid; gap:10px;}
+    .step{
+      display:flex; gap:12px; align-items:flex-start;
+      padding: 12px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.14);
+    }
+    .step .n{
+      width:34px;height:34px;
+      border-radius: 12px;
+      display:grid;place-items:center;
+      font-weight: 950;
+      color:#cfefff;
+      border:1px solid rgba(56,175,226,.28);
+      background: rgba(56,175,226,.14);
+      flex:0 0 auto;
+    }
+    .step .t{font-weight: 950; color: rgba(234,240,255,.95);}
+    .step .d{margin-top:3px; color: var(--muted); font-size: 14px;}
+
+    .team-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+      margin-top:10px;
+    }
+    @media (max-width: 560px){ .team-grid{grid-template-columns:1fr} }
+    .person{
+      display:flex; gap:12px; align-items:flex-start;
+      padding: 12px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.14);
+    }
+    .avatar{
+      width:40px;height:40px;
+      border-radius: 14px;
+      display:grid;place-items:center;
+      font-weight: 950;
+      color:#fff;
+      border:1px solid rgba(255,255,255,.16);
+      background:
+        radial-gradient(600px 220px at 10% 10%, rgba(56,175,226,.25), transparent 55%),
+        radial-gradient(520px 220px at 90% 0%, rgba(255,106,61,.18), transparent 55%),
+        rgba(255,255,255,.06);
+      flex:0 0 auto;
+    }
+    .person .role{color: var(--muted); font-size: 13px; font-weight: 800; margin-top:3px;}
+    .person .langs{color: rgba(195,205,226,.85); font-size: 12px; margin-top:6px;}
+
+    /* FAQ (bez rozklikávání) */
+    .faq-list{display:grid; gap:12px; margin-top:14px;}
+    .faq-item{
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+    }
+    .faq-item h4{
+      margin:0 0 8px;
+      font-size: 15px;
+      letter-spacing:-.01em;
+      color: rgba(234,240,255,.96);
+    }
+    .faq-item p{margin:0; color: var(--muted);}
+  </style>
+</head>
+
+<body>
+
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar__inner">
+        <a class="brand" href="#uvod" aria-label="PaintballElite.cz">
+          <img class="brand__logo"
+               src="https://www.paintballelite.cz/wp-content/uploads/2021/02/logo_paintballelite_2019_3.png"
+               alt="PaintballElite.cz logo">
+        </a>
+
+        <div class="topinfo" aria-label="Kontaktní údaje">
+          <span><strong>PaintballElite.cz</strong></span>
+          <span>☎ <a href="tel:+420732273560">+420 732 273 560</a></span>
+          <span>✉ <a href="mailto:info@paintballelite.cz">info@paintballelite.cz</a></span>
+        </div>
+      </div>
+
+      <div class="navwrap">
+        <div class="nav">
+          <div class="navlinks" aria-label="Hlavní menu">
+            <a href="#uvod">Úvod</a>
+            <a href="#info">Info</a>
+            <a href="#reference">Reference</a>
+            <a href="#onas">O nás</a>
+            <a href="#hriste">Hřiště</a>
+            <a href="#cenik">Ceník</a>
+            <a href="#poukazky">Poukázky</a>
+            <a href="#rezervace">Rezervace</a>
+            <a href="#kontakt">Kontakt</a>
+          </div>
+
+          <div class="navcta">
+            <a class="btn btn-primary" href="#rezervace">Rezervace</a>
+            <button class="burger" type="button" id="openDrawer" aria-label="Otevřít menu">MENU</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer__panel" role="dialog" aria-modal="true" aria-label="Menu">
+      <div class="drawer__top">
+        <strong>Menu</strong>
+        <button class="drawer__close" type="button" id="closeDrawer">Zavřít</button>
+      </div>
+
+      <div class="drawer__links">
+        <a href="#uvod" data-close>Úvod</a>
+        <a href="#info" data-close>Info</a>
+        <a href="#reference" data-close>Reference</a>
+        <a href="#onas" data-close>O nás</a>
+        <a href="#hriste" data-close>Hřiště</a>
+        <a href="#cenik" data-close>Ceník</a>
+        <a href="#poukazky" data-close>Poukázky</a>
+        <a href="#rezervace" data-close>Rezervace</a>
+        <a href="#kontakt" data-close>Kontakt</a>
+      </div>
+
+      <div class="divider"></div>
+      <a class="btn btn-primary" href="#rezervace" data-close>Rezervace</a>
+      <a class="btn btn-outline" href="tel:+420732273560">Zavolat</a>
+      <a class="btn btn-outline" href="mailto:info@paintballelite.cz">Napsat e-mail</a>
+    </div>
+  </div>
+
+  <main id="uvod" class="hero anchor">
+    <div class="container">
+      <div class="hero__inner">
+        <div class="hero__panel glass">
+          <h1 class="h1">Paintball ELITE – akce pro veřejnost</h1>
+          <p class="lead">
+            Organizujeme sportovní akce pro skupiny <strong>8 až 200 hráčů</strong>. Akce pro veřejnost, firmy, školy, rodinné oslavy a další.
+          </p>
+
+          <div class="hero__bullets">
+            <span class="pill">✅ 2 hřiště: VIETCONG / LAS VEGAS</span>
+            <span class="pill">✅ Instruktoři + bezpečnost</span>
+            <span class="pill">✅ Balíčky: COMMANDO / RAMBO / STUDENT</span>
+            <span class="pill">🎁 Poukázky (6 měsíců)</span>
+          </div>
+
+          <div class="hero__actions">
+            <a class="btn btn-primary" href="#rezervace">Rezervace</a>
+            <a class="btn btn-outline" href="#poukazky">Poukázky</a>
+          </div>
+
+          <div class="kpis">
+            <div class="kpi">8–200 <span>hráčů na akci</span></div>
+            <div class="kpi">~ 2 hod <span>typická délka hry</span></div>
+            <div class="kpi">2 <span>lokality</span></div>
+          </div>
+
+          <p class="small" style="margin-top:12px">
+            Jednotlivci: zavolejte koncem týdne — často se dá přidat k jiné skupině o víkendu.
+          </p>
+        </div>
+
+        <div class="hero__media" aria-label="Fotografie paintballu"></div>
+      </div>
+    </div>
+  </main>
+
+  <section class="section anchor" id="info">
+    <div class="container">
+      <div class="grid grid-3">
+        <article class="card glass">
+          <h2 class="h2" style="margin:0 0 10px">Kuličky s barvou</h2>
+          <p class="lead">
+            Na akcích používáme kuličky s gelovou barevnou náplní. Díky obsahu barvy a jejímu rozprsknutí
+            se několikanásobně zmenší kinetická energie dopadu. Do hry volíme kuličky s optimální křehkostí
+            a důrazem na ekologickou nezávadnost.
+          </p>
+        </article>
+
+        <article class="card glass">
+          <h2 class="h2" style="margin:0 0 10px">Co je to paintball?</h2>
+          <p class="lead">
+            Paintball je týmová hra dvou týmů, kdy dle pravidel plníte zadaný úkol – ukořistit vlajku,
+            dobývat území nebo zajistit budovu. Soupeře můžete označit barevnou kuličkou a vyřadit ho tak ze hry
+            podle scénáře.
+          </p>
+        </article>
+
+        <article class="card glass">
+          <h2 class="h2" style="margin:0 0 10px">Pro koho to je</h2>
+          <ul class="list" style="margin-top:10px">
+            <li><span class="dot"></span><span>Veřejnost (party, oslavy) i firmy (teambuilding)</span></li>
+            <li><span class="dot"></span><span>Školní výlety / juniorské skupiny (scénáře upravíme)</span></li>
+            <li><span class="dot"></span><span>Od menších part až po velké skupiny</span></li>
+          </ul>
+          <div class="divider"></div>
+          <p class="small" style="margin:0">Jednotlivci: často se dá domluvit přidání k jiné skupině (ideálně volat koncem týdne).</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section anchor" id="reference">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <h2 class="h2">Napsali o nás</h2>
+          <p class="lead">Krátké dojmy z akcí.</p>
+        </div>
+        <a class="btn btn-outline" href="#rezervace">Rezervace</a>
+      </div>
+
+      <div class="grid grid-2" style="margin-top:18px">
+        <div class="quote">
+          <p>Akce se povedla, kolegové byli spokojení. Zázemí bylo připravené a líbilo se nám, že bylo víc variant her.</p>
+          <div class="who">J. F. – TIETO, Ostrava</div>
+        </div>
+
+        <div class="quote">
+          <p>Byl to překvapivě silný zážitek a velká zábava. Člověk se naučí nové věci a rád se vrátí znovu.</p>
+          <div class="who">Michal Drozd – Ostrava</div>
+        </div>
+
+        <div class="quote">
+          <p>Skvělé a zábavné hry, přátelský a zkušený personál a hřiště s mnoha herními možnostmi.</p>
+          <div class="who">Jana Macková – Ostrava</div>
+        </div>
+
+        <div class="quote">
+          <p>Před první hrou jsem měl obavy ze zásahů, ale rychle to přešlo. Díky trpělivé obsluze jsme si to fakt užili.</p>
+          <div class="who">Kamil Velebil – Ostrava</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section anchor" id="onas">
+    <div class="container">
+      <div class="grid grid-2" style="align-items:start">
+
+        <div>
+          <div class="card glass about-hero">
+            <h2 class="h2">O nás</h2>
+            <p class="lead">
+              Od roku 2003 organizujeme paintballové akce pro veřejnost i firmy. Máme koncesi na organizaci sportovních paintballových akcí
+              a výrobu paintballových kuliček. Používáme kuličky s ekologickou gelovou náplní a na větší akce máme vybavení až pro 100 hráčů.
+            </p>
+
+            <div class="meta">
+              <span class="about-chip">✅ Instruktoři + bezpečnost</span>
+              <span class="about-chip">✅ Scénáře pro nováčky i zkušené</span>
+              <span class="about-chip">✅ Akce pro školy, firmy, oslavy</span>
+            </div>
+
+            <div class="stats">
+              <div class="stat"><b>2003</b><span>od kdy fungujeme</span></div>
+              <div class="stat"><b>~ 2 hod</b><span>typická délka hry</span></div>
+              <div class="stat"><b>~ 10 her</b><span>běžně za akci</span></div>
+            </div>
+          </div>
+
+          <div class="about-types">
+            <div class="card glass">
+              <h3 class="h3">Firemní akce – teambuilding</h3>
+              <p class="muted" style="margin:0">
+                Paintball přirozeně podporuje spolupráci a komunikaci v týmu. Umíme připravit i turnaj, tempo hry drží instruktor.
+                Lze domluvit občerstvení i doplňkový program.
+              </p>
+            </div>
+
+            <div class="card glass">
+              <h3 class="h3">Školy / junioři</h3>
+              <p class="muted" style="margin:0">
+                Scénáře upravíme pro mladší hráče i školní kolektivy. Důraz na bezpečnost, srozumitelná pravidla a zábavu pro všechny.
+              </p>
+            </div>
+
+            <div class="card glass">
+              <h3 class="h3">Rodinné oslavy</h3>
+              <p class="muted" style="margin:0">
+                Narozeniny nebo výročí – nastavíme hry tak, aby si je užili nováčci i zkušenější, bez zbytečné frustrace.
+              </p>
+            </div>
+
+            <div class="card glass">
+              <h3 class="h3">„Zapíjení svobody“</h3>
+              <p class="muted" style="margin:0">
+                Oblíbený formát pro partu a ženicha – svižné scénáře, soutěžní režimy a jasná pravidla.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="compact-stack">
+          <aside class="card glass">
+            <h3 class="h3">Rychlý kontakt</h3>
+            <p class="muted" style="margin:0">
+              Telefon: <a href="tel:+420732273560" style="font-weight:900; color:var(--brand); text-decoration:none;">+420 732 273 560</a><br>
+              E-mail: <a href="mailto:info@paintballelite.cz" style="font-weight:900; color:var(--brand); text-decoration:none;">info@paintballelite.cz</a>
+            </p>
+
+            <div class="divider"></div>
+
+            <div class="compact-actions">
+              <a class="btn btn-primary" href="#rezervace">Rezervace</a>
+              <a class="btn btn-outline" href="#poukazky">Poukázky</a>
+            </div>
+
+            <div class="divider"></div>
+
+            <p class="small" style="margin:0">
+              kancelář:<br>
+              <strong>Duing Distribution s.r.o.</strong><br>
+              Radniční 910/73, 715 00 Ostrava, CZ
+            </p>
+
+            <div class="divider"></div>
+
+            <div class="hint">
+              <strong>Tip:</strong> Do rezervace napište počet hráčů, datum, čas, lokalitu a balíček.
+            </div>
+          </aside>
+
+          <div class="accordion">
+            <details open>
+              <summary>
+                <span>Základní fakta</span>
+                <span class="chev">+</span>
+              </summary>
+              <div class="content">
+                <div class="kv2" style="margin-top:10px">
+                  <div class="row">
+                    <div class="k">Oprávnění</div>
+                    <div class="v">Koncesní živnost – organizace akcí + výroba paintballových kuliček.</div>
+                  </div>
+                  <div class="row">
+                    <div class="k">Vybavení</div>
+                    <div class="v">Kompletní vybavení až pro 100 hráčů.</div>
+                  </div>
+                  <div class="row">
+                    <div class="k">Cíl akcí</div>
+                    <div class="v">Pobavit, stmelit kolektiv, podpořit týmovou spolupráci a pohyb venku.</div>
+                  </div>
+                  <div class="row">
+                    <div class="k">Bezpečnost</div>
+                    <div class="v">Povinné masky v ohroženém prostoru, kontrola vybavení, dohled instruktora.</div>
+                  </div>
+                </div>
+              </div>
+            </details>
+
+            <details>
+              <summary>
+                <span>Průběh akce</span>
+                <span class="chev">+</span>
+              </summary>
+              <div class="content">
+                <div class="stepper">
+                  <div class="step">
+                    <div class="n">1</div>
+                    <div>
+                      <div class="t">Rezervace termínu</div>
+                      <div class="d">Domluvíme datum, čas, lokalitu, počet hráčů a balíček.</div>
+                    </div>
+                  </div>
+
+                  <div class="step">
+                    <div class="n">2</div>
+                    <div>
+                      <div class="t">Instruktáž</div>
+                      <div class="d">Bezpečnost + ovládání vybavení, rozdělení do týmů a pravidla.</div>
+                    </div>
+                  </div>
+
+                  <div class="step">
+                    <div class="n">3</div>
+                    <div>
+                      <div class="t">Hry a scénáře</div>
+                      <div class="d">Před každou hrou vysvětlíme scénář a řídíme průběh.</div>
+                    </div>
+                  </div>
+
+                  <div class="step">
+                    <div class="n">4</div>
+                    <div>
+                      <div class="t">Vyhodnocení a doplňky</div>
+                      <div class="d">Kdo chce, přidáme další hry / občerstvení podle rezervace.</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="divider"></div>
+                <p class="small" style="margin:0">
+                  Do 18 let je potřeba souhlas zákonného zástupce (PDF máš v sekci Rezervace).
+                </p>
+              </div>
+            </details>
+
+            <details>
+              <summary>
+                <span>Náš tým – instruktoři</span>
+                <span class="chev">+</span>
+              </summary>
+              <div class="content">
+                <p class="small" style="margin:0 0 10px">
+                  Organizace, scénáře a dohled po celou dobu – podle typu akce přizpůsobíme tempo i náročnost.
+                </p>
+
+                <div class="team-grid">
+                  <div class="person">
+                    <div class="avatar">JD</div>
+                    <div>
+                      <div style="font-weight:950">Ing. Jan Duda</div>
+                      <div class="role">Rezervace termínů, firemní turnaje a větší akce</div>
+                      <div class="langs">CZ / EN / DE / PL</div>
+                    </div>
+                  </div>
+
+                  <div class="person">
+                    <div class="avatar">JJ</div>
+                    <div>
+                      <div style="font-weight:950">Ing. Jiří Duda</div>
+                      <div class="role">Organizace akcí, školy a firemní akce</div>
+                      <div class="langs">CZ / PL / RU</div>
+                    </div>
+                  </div>
+
+                  <div class="person">
+                    <div class="avatar">VD</div>
+                    <div>
+                      <div style="font-weight:950">Mgr. Věra Dudová</div>
+                      <div class="role">Catering a doplňkové sportovní atrakce</div>
+                      <div class="langs">CZ / PL / EN</div>
+                    </div>
+                  </div>
+
+                  <div class="person">
+                    <div class="avatar">PL</div>
+                    <div>
+                      <div style="font-weight:950">Petr Logan</div>
+                      <div class="role">Instruktor, scénáře her, profesionální hasič</div>
+                      <div class="langs">CZ / EN</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- FAQ bez rozklikávání, vše pod sebe -->
+      <div style="margin-top:18px">
+        <div class="section-title">
+          <div>
+            <h3 class="h2" style="margin:0">Nejčastější dotazy</h3>
+            <p class="lead">Rychlé odpovědi na to, co řeší lidé nejčastěji.</p>
+          </div>
+          <a class="btn btn-outline" href="#rezervace">Rezervace</a>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <h4>Od kolika let se dá hrát?</h4>
+            <p>
+              Nejmladší děti u nás hrály zhruba od 8 let s doprovodem rodičů. Scénáře upravujeme tak,
+              aby se hrálo na delší vzdálenost, a u mladších volíme křehčí kuličky.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h4>Jak se platí?</h4>
+            <p>
+              Platí se podle skutečné spotřeby. Po hře lze platit hotově nebo kartou. U firem je možná i platba převodem.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h4>Co si vzít s sebou?</h4>
+            <p>
+              Vybavení půjčíme kompletně včetně oblečení. Doporučujeme hlavně kvalitní obuv (treková/sportovní).
+              Hodí se pití, šátek a ručník.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h4>Dá se barva vyprat?</h4>
+            <p>
+              Ano – barva je dobře pratelná a kuličky jsou ekologicky odbouratelné.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h4>Bolí paintball?</h4>
+            <p>
+              Křehkost kuliček volíme podle počasí. Bolestivost nelze garantovat u každého zásahu,
+              ale s vhodným oblečením bývá nízká. Doporučujeme zakrytí krku a případně ochrannou vestu.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section anchor" id="hriste">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <h2 class="h2">Hřiště</h2>
+          <p class="lead">Dvě lokality – přepněte si hřiště a projděte detaily. Výběr lokality řešte v rezervaci.</p>
+        </div>
+        <a class="btn btn-outline" href="#rezervace">Rezervace</a>
+      </div>
+
+      <div class="places-tabs" role="tablist" aria-label="Výběr hřiště">
+        <button class="tabbtn" type="button" role="tab" aria-selected="true" data-panel="panel-vietcong" id="tab-vietcong">
+          VIETCONG – Ostrava Třebovice
+        </button>
+        <button class="tabbtn" type="button" role="tab" aria-selected="false" data-panel="panel-lasvegas" id="tab-lasvegas">
+          LAS VEGAS – Hukovice
+        </button>
+      </div>
+
+      <div class="place-panel active" id="panel-vietcong" role="tabpanel" aria-labelledby="tab-vietcong">
+        <div class="place-head" style="margin-top:16px">
+          <div class="place-photo">
+            <img src="https://www.paintballelite.cz/wp-content/uploads/2023/04/VIETCONG_mapa2023l2-845x1024.png"
+                 alt="VIETCONG – mapa hřiště" loading="lazy">
+          </div>
+
+          <div class="place-details">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap">
+              <strong style="font-size:18px;color:var(--text)">VIETCONG</strong>
+              <a class="btn btn-outline" href="https://www.paintballelite.cz/wp-content/uploads/2023/05/Provozni_rad_hriste_vietcong_2023.pdf" target="_blank" rel="noopener">
+                Provozní řád (PDF)
+              </a>
+            </div>
+
+            <div class="place-badges">
+              <span class="badge">🌿 lesní terén</span>
+              <span class="badge">🎭 scénáře</span>
+              <span class="badge">🏢 zázemí</span>
+            </div>
+
+            <h4>Kde a jak se tam dostat</h4>
+            <p>
+              Areál je v Ostravě–Třebovicích. Příjezd vede kolem Hornbachu Svinov, u elektrárny doprava,
+              po cca 200 m doprava pod železniční tunel a pak rovně přibližně 500 m.
+            </p>
+
+            <h4>Co vás čeká</h4>
+            <p>
+              Jedinečný lesní terén v centru Ostravy: vzrostlé stromy, množství zátarasů, dřevěných budov,
+              dobývání kopce „CITADELA“ a další scénáře. Hrací plocha tvoří členitý terén s kopečky a zákopy,
+              rozdělený na několik hracích ploch.
+            </p>
+
+            <h4>Parametry</h4>
+            <div class="kv">
+              <div class="row"><div class="k">Rozloha</div><div class="v">cca 11 000 m²</div></div>
+              <div class="row"><div class="k">Kapacita</div><div class="v">až 200 hráčů</div></div>
+              <div class="row"><div class="k">Min. hrací vzdálenost</div><div class="v">12 m</div></div>
+              <div class="row"><div class="k">GPS</div><div class="v">49.82941, 18.22122</div></div>
+            </div>
+
+            <div class="divider"></div>
+
+            <h4>Zázemí</h4>
+            <p>
+              Zázemí pro hráče, možnost grilování nebo zajištění občerstvení a parkování u areálu.
+            </p>
+
+            <div class="divider"></div>
+            <div class="links" style="display:flex; gap:10px; flex-wrap:wrap">
+              <a class="btn btn-outline" href="https://www.paintballelite.cz/wp-content/uploads/2024/05/video-output-77D36F36-9E44-412A-9DFD-CB763BEC8423.mp4" target="_blank" rel="noopener">
+                Navigace autem (video)
+              </a>
+              <a class="btn btn-outline" href="https://photos.app.goo.gl/RV2XjwngwuyhXwhLA" target="_blank" rel="noopener">
+                Galerie
+              </a>
+            </div>
+
+            <div class="divider"></div>
+            <div class="small">Správce hřiště: Ing. Jan Duda, tel. 732 273 560</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="place-panel" id="panel-lasvegas" role="tabpanel" aria-labelledby="tab-lasvegas">
+        <div class="place-head" style="margin-top:16px">
+          <div class="place-photo">
+            <img src="https://www.paintballelite.cz/wp-content/uploads/2021/02/lasvegas_gal-300x225.jpg"
+                 alt="LAS VEGAS – foto hřiště" loading="lazy">
+          </div>
+
+          <div class="place-details">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap">
+              <strong style="font-size:18px;color:var(--text)">LAS VEGAS</strong>
+              <a class="btn btn-outline" href="https://www.paintballelite.cz/wp-content/uploads/2023/05/Provozni_rad_hriste_las_vegas_2023.pdf" target="_blank" rel="noopener">
+                Provozní řád (PDF)
+              </a>
+            </div>
+
+            <div class="place-badges">
+              <span class="badge">🏚️ areál</span>
+              <span class="badge">🧱 bunkry</span>
+              <span class="badge">🌲 lesní terén</span>
+            </div>
+
+            <h4>Co je to za areál</h4>
+            <p>
+              Vojenský areál bývalé raketové základny: budovy s původním maskováním, členitý terén, dřevěné zátarasy,
+              podzemní garáže, bunkry, strážní věže, vstupy do podzemí a podzemní chodby.
+              K dispozici rozsáhlý lesní terén o rozloze cca 120 000 m² ohraničený 3 m betonovou zdí.
+            </p>
+
+            <h4>Důležitá informace</h4>
+            <p><strong>Objekt je chráněn psy.</strong></p>
+
+            <h4>Parametry</h4>
+            <div class="kv">
+              <div class="row"><div class="k">Rozloha</div><div class="v">cca 120 000 m²</div></div>
+              <div class="row"><div class="k">Kapacita</div><div class="v">cca 50 hráčů</div></div>
+              <div class="row"><div class="k">Min. hrací vzdálenost</div><div class="v">12 m</div></div>
+              <div class="row"><div class="k">GPS</div><div class="v">49.635528, 18.039760</div></div>
+            </div>
+
+            <div class="divider"></div>
+
+            <h4>Zázemí</h4>
+            <p>
+              Zastřešené zázemí pro hráče, možnost grilování nebo zajištění občerstvení a parkování uvnitř areálu.
+            </p>
+
+            <div class="divider"></div>
+            <div class="links" style="display:flex; gap:10px; flex-wrap:wrap">
+              <a class="btn btn-outline" href="https://youtu.be/0quBSEYqvE0" target="_blank" rel="noopener">Prezentační video 1</a>
+              <a class="btn btn-outline" href="https://youtu.be/BHJVikLOVIs" target="_blank" rel="noopener">Prezentační video 2</a>
+            </div>
+
+            <div class="divider"></div>
+            <div class="small">Správce hřiště: Ing. Jan Duda, tel. 732 273 560</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section anchor" id="cenik">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <h2 class="h2">Ceník</h2>
+          <p class="lead">Balíčky + podmínky (minimální počet hráčů, doplatky kuliček, půjčovné…)</p>
+        </div>
+        <a class="btn btn-primary" href="#rezervace">Rezervace</a>
+      </div>
+
+      <div class="grid grid-3" style="margin-top:18px">
+        <article class="card glass">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px">
+            <h3 class="h3" style="margin:0">COMMANDO</h3>
+            <span class="badge-top">TOP</span>
+          </div>
+          <div class="price">990 Kč <span class="small" style="font-weight:800">/ os</span></div>
+          <ul class="list">
+            <li><span class="dot"></span><span>800 ks kuliček</span></li>
+            <li><span class="dot"></span><span>2 hodiny hry</span></li>
+            <li><span class="dot"></span><span>Půjčovné: maskáče, značkovač, maska, tlak, rukavice</span></li>
+            <li><span class="dot"></span><span>Minimum: 8 hráčů</span></li>
+            <li><span class="dot"></span><span>Další kuličky: 1 Kč / ks</span></li>
+          </ul>
+        </article>
+
+        <article class="card glass">
+          <h3 class="h3">RAMBO</h3>
+          <div class="price">650 Kč <span class="small" style="font-weight:800">/ os</span></div>
+          <ul class="list">
+            <li><span class="dot"></span><span>500 ks kuliček</span></li>
+            <li><span class="dot"></span><span>2 hodiny hry</span></li>
+            <li><span class="dot"></span><span>Půjčovné: značkovač, maska, tlak, rukavice</span></li>
+            <li><span class="dot"></span><span>Minimum: 15 hráčů</span></li>
+            <li><span class="dot"></span><span>Další kuličky: 1 Kč / ks</span></li>
+          </ul>
+        </article>
+
+        <article class="card glass">
+          <h3 class="h3">STUDENT</h3>
+          <div class="price">390 Kč <span class="small" style="font-weight:800">/ os</span></div>
+          <ul class="list">
+            <li><span class="dot"></span><span>300 ks kuliček</span></li>
+            <li><span class="dot"></span><span>Půjčovné: značkovač, maska, tlak, rukavice</span></li>
+            <li><span class="dot"></span><span>2 hodiny hry</span></li>
+            <li><span class="dot"></span><span>Minimum: 20 hráčů (do 18 let)</span></li>
+            <li><span class="dot"></span><span>Termíny: Po–Pá 8–14 h</span></li>
+            <li><span class="dot"></span><span>Další kuličky: 1 Kč / ks</span></li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="grid grid-2" style="margin-top:16px; align-items:start">
+        <div class="card glass">
+          <h3 class="h3">Nabízíme (v ceně tarifu)</h3>
+          <ul class="list">
+            <li><span class="dot"></span><span>Bezpečnostní školení, servis a údržba vybavení</span></li>
+            <li><span class="dot"></span><span>Čištění masek a značkovačů</span></li>
+            <li><span class="dot"></span><span>Organizace her a vysvětlení scénářů</span></li>
+            <li><span class="dot"></span><span>Doplňování stlačeného plynu do zbraní zdarma</span></li>
+            <li><span class="dot"></span><span>Hraje se za každého počasí</span></li>
+            <li><span class="dot"></span><span>Hřiště jsou dost velká i pro více skupin hrajících odděleně</span></li>
+          </ul>
+        </div>
+
+        <div class="card glass">
+          <h3 class="h3">Firemní akce, doplňky, platby</h3>
+          <ul class="list">
+            <li><span class="dot"></span><span>Pro firemní akce lze zajistit catering, občerstvení a doplňkový program</span></li>
+            <li><span class="dot"></span><span>Zapůjčení maskáčů (kombinéza): <strong>100 Kč</strong></span></li>
+            <li><span class="dot"></span><span>Platba: <strong>karta / faktura / hotově</strong></span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-2" style="margin-top:16px; align-items:start">
+        <div class="card glass">
+          <h3 class="h3">Doplňující podmínky</h3>
+          <ul class="list">
+            <li><span class="dot"></span><span>Hrajeme za každého počasí (v zimě dle počasí).</span></li>
+            <li><span class="dot"></span><span>Rezervace dopředu doporučená (víkendy se plní).</span></li>
+            <li><span class="dot"></span><span>Do 18 let: dle pravidel + souhlas zákonného zástupce (PDF).</span></li>
+          </ul>
+        </div>
+
+        <div class="card glass">
+          <h3 class="h3">Občerstvení (volitelné)</h3>
+
+          <p class="muted" style="margin:0">
+            Občerstvení může zahrnovat steak 150 g nebo 250 g (kuřecí/vepřový), chléb, zeleninu a nápoje
+            (nealko pivo, Radegast lahvové, Coca-Cola, minerálky). Minimum pro objednání je 10 osob.
+            Jídla jsou připravena dopředu a na místě se jen servírují.
+          </p>
+          <div class="divider"></div>
+
+          <ul class="list">
+            <li><span class="dot"></span><span><strong>Steak 150 g</strong> – 390 Kč / osoba</span></li>
+            <li><span class="dot"></span><span><strong>Steak 250 g</strong> – 490 Kč / osoba</span></li>
+            <li><span class="dot"></span><span><strong>Jiné občerstvení</strong> – dle dohody</span></li>
+          </ul>
+          <div class="divider"></div>
+          <div class="hint">Do rezervace napište „občerstvení: steak 150 g / 250 g / dle dohody“ + počet osob.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section anchor" id="poukazky">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <h2 class="h2">Poukázky (e-shop)</h2>
+          <p class="lead">Poukázky na paintball – přidejte do košíku a odešlete objednávku e-mailem. Platnost <strong>6 měsíců</strong>.</p>
+        </div>
+        <button class="btn btn-secondary" type="button" id="openCartTop">Otevřít košík</button>
+      </div>
+
+      <div class="shop-grid" style="margin-top:18px">
+        <article class="card glass product-card">
+          <div class="product-thumb">
+            <span class="tag">Poukázka</span>
+            <img src="https://www.paintballelite.cz/wp-content/uploads/2022/02/pouka_str.gif" alt="Poukázka na paintball" loading="lazy">
+          </div>
+          <div class="prod-meta">
+            <h3 class="h3">Poukázka – balíček COMMANDO</h3>
+            <div class="prod-price">990 Kč</div>
+            <p class="muted" style="margin:0">800 ks kuliček, 2 hodiny hry, půjčovné (maskáče, značkovač, maska, tlak, rukavice).</p>
+          </div>
+          <div class="prod-actions">
+            <button class="btn btn-primary" type="button" data-add data-id="voucher-commando" data-name="Poukázka COMMANDO" data-price="990">Přidat</button>
+            <button class="btn btn-outline" type="button" data-open-cart>Košík</button>
+          </div>
+        </article>
+
+        <article class="card glass product-card">
+          <div class="product-thumb">
+            <span class="tag">Poukázka</span>
+            <img src="https://www.paintballelite.cz/wp-content/uploads/2022/02/pouka_str.gif" alt="Poukázka na paintball" loading="lazy">
+          </div>
+          <div class="prod-meta">
+            <h3 class="h3">Poukázka – balíček RAMBO</h3>
+            <div class="prod-price">650 Kč</div>
+            <p class="muted" style="margin:0">500 ks kuliček, 2 hodiny hry, půjčovné (značkovač, maska, tlak, rukavice).</p>
+          </div>
+          <div class="prod-actions">
+            <button class="btn btn-primary" type="button" data-add data-id="voucher-rambo" data-name="Poukázka RAMBO" data-price="650">Přidat</button>
+            <button class="btn btn-outline" type="button" data-open-cart>Košík</button>
+          </div>
+        </article>
+
+        <article class="card glass product-card">
+          <div class="product-thumb">
+            <span class="tag">Poukázka</span>
+            <img src="https://www.paintballelite.cz/wp-content/uploads/2022/02/pouka_str.gif" alt="Poukázka na paintball" loading="lazy">
+          </div>
+          <div class="prod-meta">
+            <h3 class="h3">Poukázka – libovolná částka</h3>
+            <div class="inline">
+              <div class="prod-price"><span id="customVoucherLabel">1000</span> Kč</div>
+              <span class="small">(rozmezí 990–1000)</span>
+            </div>
+            <div class="inline" style="margin-top:6px">
+              <input id="customVoucherAmount" type="number" min="990" max="1000" step="10" value="1000" aria-label="Částka poukazu">
+              <button class="btn btn-primary" type="button" id="addCustomVoucher">Přidat</button>
+            </div>
+            <p class="muted" style="margin:0">Poukázka na částku dle výběru. Do poznámky lze napsat jméno obdarovaného.</p>
+          </div>
+          <div class="prod-actions">
+            <button class="btn btn-outline" type="button" data-open-cart>Košík</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section anchor" id="rezervace">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <h2 class="h2">Rezervace akce</h2>
+          <p class="lead">Vyplňte prosím datum i čas. Pokud termín nebude dostupný, ozveme se zpět.</p>
+          <div class="hint" style="margin-top:14px">
+            <strong>Prosím vyplňte všechna políčka včetně telefonu.</strong>
+            Pokud termín nebude dostupný, ozveme se obratem. Změny nebo potvrzení řešte ideálně telefonicky
+            (732 273 560) nebo e-mailem. Minimální počet je 8 hráčů a hraje se za každého počasí.
+            Do 18 let je potřeba souhlas zákonného zástupce (PDF).
+          </div>
+        </div>
+        <a class="btn btn-outline" href="tel:+420732273560">☎ 732 273 560</a>
+      </div>
+
+      <div class="grid grid-2" style="margin-top:18px; align-items:start">
+        <div class="card glass">
+          <h3 class="h3">Poptávka termínu (e-mail)</h3>
+          <p class="small" style="margin:0 0 10px">Po kliknutí se otevře e-mail s předvyplněným textem.</p>
+          <div class="divider"></div>
+
+          <div class="formgrid">
+            <div class="field">
+              <label for="rName">Jméno / firma</label>
+              <input id="rName" placeholder="např. Jan Novák / ABC s.r.o." />
+            </div>
+            <div class="field">
+              <label for="rEmail">E-mail</label>
+              <input id="rEmail" type="email" placeholder="např. jan@email.cz" />
+            </div>
+
+            <div class="field">
+              <label for="rPhone">Telefon</label>
+              <input id="rPhone" placeholder="např. +420 777 000 000" />
+            </div>
+            <div class="field">
+              <label for="rPlayers">Počet hráčů</label>
+              <input id="rPlayers" type="number" min="1" value="10" />
+            </div>
+
+            <div class="field">
+              <label for="rDate">Datum</label>
+              <input id="rDate" type="date" />
+            </div>
+            <div class="field">
+              <label for="rTime">Čas</label>
+              <input id="rTime" type="time" />
+            </div>
+
+            <div class="field">
+              <label for="rPlace">Lokalita</label>
+              <select id="rPlace">
+                <option>VIETCONG – Ostrava Třebovice</option>
+                <option>LAS VEGAS – Hukovice u Nového Jičína</option>
+                <option>Nezáleží / poradíte</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="rPack">Balíček</label>
+              <select id="rPack">
+                <option>COMMANDO</option>
+                <option>RAMBO</option>
+                <option>STUDENT</option>
+                <option>NA MÍRU</option>
+              </select>
+            </div>
+
+            <div class="field" style="grid-column:1/-1">
+              <label for="rFood">Občerstvení (volitelné)</label>
+              <select id="rFood">
+                <option>Ne</option>
+                <option>Steak 150 g (390 Kč / osoba)</option>
+                <option>Steak 250 g (490 Kč / osoba)</option>
+                <option>Jiné dle dohody</option>
+              </select>
+            </div>
+
+            <div class="field" style="grid-column:1/-1">
+              <label for="rNote">Poznámka</label>
+              <textarea id="rNote" rows="4" placeholder="např. turnajový formát, rozdělení do týmů, poukázky, občerstvení..."></textarea>
+            </div>
+
+            <div class="field" style="grid-column:1/-1">
+              <button class="btn btn-primary" type="button" id="sendReservation">Odeslat rezervaci e-mailem</button>
+              <div class="small">Pro rychlou domluvu doporučujeme telefon.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card glass">
+          <h3 class="h3">Shrnutí pravidel</h3>
+          <ul class="list">
+            <li><span class="dot"></span><span>Minimum hráčů: COMMANDO 8, RAMBO 15, STUDENT 20 (do 18 let).</span></li>
+            <li><span class="dot"></span><span>Hraje se za každého počasí (v zimě dle počasí).</span></li>
+            <li><span class="dot"></span><span>Do 18 let: dle provozních řádů + souhlas zákonného zástupce (PDF).</span></li>
+          </ul>
+
+          <div class="divider"></div>
+
+          <h3 class="h3">PDF ke stažení</h3>
+          <div class="links" style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap">
+            <a class="btn btn-outline" href="https://www.paintballelite.cz/wp-content/uploads/2023/05/Provozni_rad_hriste_vietcong_2023.pdf" target="_blank" rel="noopener">Řád VIETCONG (PDF)</a>
+            <a class="btn btn-outline" href="https://www.paintballelite.cz/wp-content/uploads/2023/05/Provozni_rad_hriste_las_vegas_2023.pdf" target="_blank" rel="noopener">Řád LAS VEGAS (PDF)</a>
+            <a class="btn btn-outline" href="https://www.paintballelite.cz/wp-content/uploads/2018/12/souhlas_zakon_zast_paintball.pdf" target="_blank" rel="noopener">Souhlas (PDF)</a>
+          </div>
+
+          <div class="divider"></div>
+          <div class="hint">
+            <strong>Nejrychlejší domluva:</strong>
+            <a href="tel:+420732273560" style="font-weight:900;color:var(--brand);text-decoration:none;">732 273 560</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section anchor" id="kontakt">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <h2 class="h2">Kontakt</h2>
+          <p class="lead">Zavolejte nebo napište – domluvíme termín, lokalitu a balíček.</p>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap">
+          <a class="btn btn-primary" href="#rezervace">Rezervace</a>
+          <a class="btn btn-outline" href="mailto:info@paintballelite.cz">E-mail</a>
+          <button class="btn btn-secondary" type="button" id="openCartBottom">Košík poukázek</button>
+        </div>
+      </div>
+
+      <div class="grid grid-2" style="margin-top:18px; align-items:stretch">
+        <div class="card glass">
+          <h3 class="h3">Kontaktní údaje</h3>
+          <p class="muted" style="margin:0">
+            Telefon: <a href="tel:+420732273560" style="font-weight:900; color:var(--brand); text-decoration:none;">+420 732 273 560</a><br>
+            E-mail: <a href="mailto:info@paintballelite.cz" style="font-weight:900; color:var(--brand); text-decoration:none;">info@paintballelite.cz</a>
+          </p>
+          <div class="divider"></div>
+          <p class="muted" style="margin:0">
+            kancelář:<br>
+            <strong>Duing Distribution s.r.o.</strong><br>
+            Radniční 910/73<br>
+            715 00 Ostrava, CZ
+          </p>
+
+          <div class="divider"></div>
+          <p class="muted" style="margin:0">
+            IČO: <strong>02862701</strong><br>
+            DIČ: <strong>CZ02862701</strong><br>
+            Další telefon: <a href="tel:+420602656107" style="font-weight:900; color:var(--brand); text-decoration:none;">+420 602 656 107</a><br>
+            Otevírací doba: <strong>kdykoli za denního světla</strong>
+          </p>
+        </div>
+
+        <div class="card glass">
+          <h3 class="h3">Rychlá zpráva (e-mail)</h3>
+          <p class="small" style="margin:0 0 10px">Otevře e-mail s vyplněným textem.</p>
+
+          <div class="grid" style="gap:10px">
+            <div class="field">
+              <label for="cName">Jméno / firma</label>
+              <input id="cName" placeholder="např. Novák / ABC s.r.o." />
+            </div>
+            <div class="field">
+              <label for="cMsg">Zpráva</label>
+              <textarea id="cMsg" rows="4" placeholder="např. dotaz na termíny, hřiště, poukázky..."></textarea>
+            </div>
+
+            <button class="btn btn-primary" type="button" id="sendContact">Odeslat e-mail</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom" style="margin-top:0; padding-top:0; border-top:0">
+        <div>© <span id="year"></span> PaintballElite.cz – Všechna práva vyhrazena</div>
+        <div><a href="#uvod">Zpět na začátek ↑</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="btn btn-secondary cartbtn" type="button" id="openCartBtn">
+    🎁 Poukázky <b id="cartCount">0</b>
+  </button>
+
+  <div class="mobilebar" aria-label="Rychlé akce (mobil)">
+    <div class="mobilebar__inner">
+      <a class="btn btn-primary" href="#rezervace">Rezervace</a>
+      <button class="btn btn-secondary mobilebar__cart" type="button" id="openCartMobile" aria-label="Otevřít košík">
+        🧾 <b id="cartCountMobile">0</b>
+      </button>
+    </div>
+  </div>
+
+  <div class="modal" id="cartModal" aria-hidden="true">
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-label="Košík poukázek">
+      <div class="modal__head">
+        <strong>Košík poukázek</strong>
+        <button class="close" type="button" id="closeCart">Zavřít</button>
+      </div>
+
+      <div class="modal__body">
+        <div>
+          <div id="cartLines" class="grid" style="gap:10px"></div>
+          <div class="divider"></div>
+          <div style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; align-items:center">
+            <strong>Celkem:</strong>
+            <strong style="font-size:18px; color:var(--text)"><span id="cartTotal">0</span> Kč</strong>
+          </div>
+
+          <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap">
+            <button class="btn btn-outline" type="button" id="clearCart">Vyprázdnit košík</button>
+            <button class="btn btn-secondary" type="button" id="fillDemo">Vyplnit demo</button>
+          </div>
+
+          <p class="small" style="margin:12px 0 0">
+            Objednávka se odešle e-mailem s položkami a cenou. (Později lze napojit platby.)
+          </p>
+        </div>
+
+        <div class="card glass" style="margin:0">
+          <h3 class="h3">Objednávkové údaje</h3>
+          <div class="grid" style="gap:10px">
+            <div class="field">
+              <label for="oName">Jméno / firma</label>
+              <input id="oName" placeholder="např. Jan Novák / Firma s.r.o." />
+            </div>
+            <div class="field">
+              <label for="oEmail">E-mail</label>
+              <input id="oEmail" type="email" placeholder="např. jan@email.cz" />
+            </div>
+            <div class="field">
+              <label for="oPhone">Telefon</label>
+              <input id="oPhone" placeholder="např. +420 777 000 000" />
+            </div>
+            <div class="field">
+              <label for="oNote">Poznámka</label>
+              <textarea id="oNote" rows="4" placeholder="např. poukázka jako PDF / jméno obdarovaného..."></textarea>
+            </div>
+
+            <button class="btn btn-primary" type="button" id="sendOrder">Odeslat objednávku e-mailem</button>
+            <p class="small" style="margin:0" id="orderHint">Košík je prázdný – přidejte nejdřív poukázku.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const yearEl = document.getElementById("year");
+      if(yearEl) yearEl.textContent = new Date().getFullYear();
+
+      const drawer = document.getElementById("drawer");
+      const openDrawer = document.getElementById("openDrawer");
+      const closeDrawer = document.getElementById("closeDrawer");
+
+      function setDrawer(open){
+        if(!drawer) return;
+        drawer.setAttribute("aria-hidden", open ? "false" : "true");
+        document.body.style.overflow = open ? "hidden" : "";
+      }
+
+      openDrawer?.addEventListener("click", () => setDrawer(true));
+      closeDrawer?.addEventListener("click", () => setDrawer(false));
+      drawer?.addEventListener("click", (e) => { if(e.target === drawer) setDrawer(false); });
+      drawer?.querySelectorAll("[data-close]")?.forEach(a => a.addEventListener("click", () => setDrawer(false)));
+
+      document.getElementById("sendContact")?.addEventListener("click", () => {
+        const name = (document.getElementById("cName")?.value || "").trim();
+        const msg  = (document.getElementById("cMsg")?.value || "").trim();
+        const subject = encodeURIComponent("Kontakt – PaintballElite.cz");
+        const body = encodeURIComponent(
+`Dobrý den,
+
+${name ? `Jméno / firma: ${name}\n` : ""}
+
+Zpráva:
+${msg || "(doplňte text)"}
+
+Děkuji.
+`
+        );
+        window.location.href = `mailto:info@paintballelite.cz?subject=${subject}&body=${body}`;
+      });
+
+      function fmtDateTime(d, t){
+        const ds = (d || "").trim();
+        const ts = (t || "").trim();
+        if(!ds && !ts) return "";
+        if(ds && ts) return `${ds} ${ts}`;
+        return ds || ts;
+      }
+
+      document.getElementById("sendReservation")?.addEventListener("click", () => {
+        const name = (document.getElementById("rName")?.value || "").trim();
+        const email = (document.getElementById("rEmail")?.value || "").trim();
+        const phone = (document.getElementById("rPhone")?.value || "").trim();
+        const players = (document.getElementById("rPlayers")?.value || "").trim();
+        const date = (document.getElementById("rDate")?.value || "").trim();
+        const time = (document.getElementById("rTime")?.value || "").trim();
+        const place = (document.getElementById("rPlace")?.value || "").trim();
+        const pack = (document.getElementById("rPack")?.value || "").trim();
+        const food = (document.getElementById("rFood")?.value || "").trim();
+        const note = (document.getElementById("rNote")?.value || "").trim();
+
+        const subject = encodeURIComponent("Rezervace akce – PaintballElite.cz");
+        const when = fmtDateTime(date, time);
+
+        const body = encodeURIComponent(
+`Dobrý den,
+
+mám zájem o rezervaci paintball akce.
+
+Jméno / firma: ${name || "-"}
+E-mail: ${email || "-"}
+Telefon: ${phone || "-"}
+
+Počet hráčů: ${players || "-"}
+Preferovaný termín: ${when || "-"}
+Lokalita: ${place || "-"}
+Balíček: ${pack || "-"}
+
+Občerstvení (volitelné): ${food || "-"}
+
+Poznámka:
+${note || "-"}
+
+Děkuji a přeji hezký den.
+`
+        );
+        window.location.href = `mailto:info@paintballelite.cz?subject=${subject}&body=${body}`;
+      });
+
+      (function(){
+        const tabs = Array.from(document.querySelectorAll(".tabbtn[role='tab'][data-panel]"));
+        const panels = Array.from(document.querySelectorAll(".place-panel[role='tabpanel']"));
+        if(!tabs.length || !panels.length) return;
+
+        function activate(tab){
+          const targetId = tab.dataset.panel;
+          tabs.forEach(t => {
+            const on = t === tab;
+            t.setAttribute("aria-selected", on ? "true" : "false");
+            t.tabIndex = on ? 0 : -1;
+          });
+          panels.forEach(p => p.classList.toggle("active", p.id === targetId));
+        }
+
+        tabs.forEach((t, i) => t.tabIndex = (t.getAttribute("aria-selected") === "true" || i === 0) ? 0 : -1);
+
+        tabs.forEach((t) => t.addEventListener("click", (e) => { e.preventDefault(); activate(t); }));
+
+        tabs.forEach((t, idx) => t.addEventListener("keydown", (e) => {
+          const key = e.key;
+          if(key === "ArrowRight" || key === "ArrowDown"){
+            e.preventDefault();
+            const next = tabs[(idx + 1) % tabs.length];
+            next.focus(); activate(next);
+          } else if(key === "ArrowLeft" || key === "ArrowUp"){
+            e.preventDefault();
+            const prev = tabs[(idx - 1 + tabs.length) % tabs.length];
+            prev.focus(); activate(prev);
+          } else if(key === "Enter" || key === " "){
+            e.preventDefault();
+            activate(t);
+          }
+        }));
+      })();
+
+      const CART_KEY = "pbe_cart_v1_vouchers";
+      const cartCountEl = document.getElementById("cartCount");
+      const cartCountMobileEl = document.getElementById("cartCountMobile");
+      const cartTotalEl = document.getElementById("cartTotal");
+      const cartLinesEl = document.getElementById("cartLines");
+      const orderHintEl = document.getElementById("orderHint");
+
+      function loadCart(){
+        try { return JSON.parse(localStorage.getItem(CART_KEY)) || {}; } catch(e){ return {}; }
+      }
+      function saveCart(cart){
+        localStorage.setItem(CART_KEY, JSON.stringify(cart));
+      }
+      function cartItems(cart){
+        return Object.values(cart);
+      }
+      function cartQty(cart){
+        return cartItems(cart).reduce((s, it) => s + it.qty, 0);
+      }
+      function cartTotal(cart){
+        return cartItems(cart).reduce((s, it) => s + (it.price * it.qty), 0);
+      }
+
+      function escapeHtml(s){
+        return String(s).replace(/[&<>"']/g, (m)=>({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;" }[m]));
+      }
+
+      function renderCart(){
+        const cart = loadCart();
+        const qty = cartQty(cart);
+        const total = cartTotal(cart);
+
+        if(cartCountEl) cartCountEl.textContent = qty;
+        if(cartCountMobileEl) cartCountMobileEl.textContent = qty;
+        if(cartTotalEl) cartTotalEl.textContent = total;
+
+        if(!cartLinesEl) return;
+        cartLinesEl.innerHTML = "";
+        const items = cartItems(cart);
+
+        const sendBtn = document.getElementById("sendOrder");
+
+        if(items.length === 0){
+          cartLinesEl.innerHTML = `<div class="card glass" style="box-shadow:none">
+            <strong>Košík je prázdný.</strong>
+            <div class="small" style="margin-top:6px">Přidejte poukázku v sekci „Poukázky“.</div>
+          </div>`;
+          if(orderHintEl) orderHintEl.textContent = "Košík je prázdný – přidejte nejdřív poukázku.";
+          if(sendBtn) sendBtn.disabled = true;
+          return;
+        }
+
+        if(sendBtn) sendBtn.disabled = false;
+        if(orderHintEl) orderHintEl.textContent = "Zkontrolujte položky a odešlete objednávku e-mailem.";
+
+        items.forEach(it => {
+          const line = document.createElement("div");
+          line.className = "cartline";
+          line.innerHTML = `
+            <div>
+              <div style="font-weight:950; color:var(--text)">${escapeHtml(it.name)}</div>
+              <div class="small">${it.price} Kč / ks</div>
+            </div>
+            <div style="display:grid; gap:8px; justify-items:end">
+              <div class="qty">
+                <button type="button" data-dec="${it.id}" aria-label="Mínus">−</button>
+                <input type="number" min="1" value="${it.qty}" data-qty="${it.id}" aria-label="Množství">
+                <button type="button" data-inc="${it.id}" aria-label="Plus">+</button>
+              </div>
+              <div style="font-weight:950">${it.price * it.qty} Kč</div>
+              <button class="btn btn-danger" style="padding:10px 12px" type="button" data-rem="${it.id}">Odebrat</button>
+            </div>
+          `;
+          cartLinesEl.appendChild(line);
+        });
+
+        cartLinesEl.querySelectorAll("[data-inc]").forEach(btn => {
+          btn.addEventListener("click", () => changeQty(btn.getAttribute("data-inc"), +1));
+        });
+        cartLinesEl.querySelectorAll("[data-dec]").forEach(btn => {
+          btn.addEventListener("click", () => changeQty(btn.getAttribute("data-dec"), -1));
+        });
+        cartLinesEl.querySelectorAll("[data-rem]").forEach(btn => {
+          btn.addEventListener("click", () => removeItem(btn.getAttribute("data-rem")));
+        });
+        cartLinesEl.querySelectorAll("input[data-qty]").forEach(inp => {
+          inp.addEventListener("change", () => setQty(inp.getAttribute("data-qty"), parseInt(inp.value || "1", 10)));
+        });
+      }
+
+      function addItem(id, name, price){
+        const cart = loadCart();
+        if(!cart[id]) cart[id] = {id, name, price: Number(price), qty: 0};
+        cart[id].qty += 1;
+        saveCart(cart);
+        renderCart();
+      }
+      function changeQty(id, delta){
+        const cart = loadCart();
+        if(!cart[id]) return;
+        cart[id].qty = Math.max(1, cart[id].qty + delta);
+        saveCart(cart);
+        renderCart();
+      }
+      function setQty(id, qty){
+        const cart = loadCart();
+        if(!cart[id]) return;
+        const q = Math.max(1, Number.isFinite(qty) ? qty : 1);
+        cart[id].qty = q;
+        saveCart(cart);
+        renderCart();
+      }
+      function removeItem(id){
+        const cart = loadCart();
+        delete cart[id];
+        saveCart(cart);
+        renderCart();
+      }
+      function clearCart(){
+        saveCart({});
+        renderCart();
+      }
+
+      const cartModal = document.getElementById("cartModal");
+      const openCartBtn = document.getElementById("openCartBtn");
+      const openCartTop = document.getElementById("openCartTop");
+      const openCartBottom = document.getElementById("openCartBottom");
+      const openCartMobile = document.getElementById("openCartMobile");
+      const closeCart = document.getElementById("closeCart");
+
+      function setCart(open){
+        if(!cartModal) return;
+        cartModal.setAttribute("aria-hidden", open ? "false" : "true");
+        document.body.style.overflow = open ? "hidden" : "";
+        if(open) renderCart();
+      }
+
+      openCartBtn?.addEventListener("click", ()=>setCart(true));
+      openCartTop?.addEventListener("click", ()=>setCart(true));
+      openCartBottom?.addEventListener("click", ()=>setCart(true));
+      openCartMobile?.addEventListener("click", ()=>setCart(true));
+      closeCart?.addEventListener("click", ()=>setCart(false));
+      cartModal?.addEventListener("click", (e)=>{ if(e.target === cartModal) setCart(false); });
+      document.querySelectorAll("[data-open-cart]")?.forEach(btn => btn.addEventListener("click", ()=>setCart(true)));
+
+      document.querySelectorAll("[data-add]").forEach(btn => {
+        btn.addEventListener("click", () => addItem(btn.dataset.id, btn.dataset.name, btn.dataset.price));
+      });
+
+      const MIN_CUSTOM = 990;
+      const MAX_CUSTOM = 1000;
+
+      function clampCustom(v){
+        const n = Number.isFinite(v) ? v : MAX_CUSTOM;
+        return Math.min(MAX_CUSTOM, Math.max(MIN_CUSTOM, n));
+      }
+
+      const customVoucherAmount = document.getElementById("customVoucherAmount");
+      const customVoucherLabel  = document.getElementById("customVoucherLabel");
+
+      function syncCustomLabel(){
+        if(!customVoucherAmount || !customVoucherLabel) return;
+        const raw = parseInt(customVoucherAmount.value || String(MAX_CUSTOM), 10);
+        const v = clampCustom(Number.isFinite(raw) ? raw : MAX_CUSTOM);
+        customVoucherAmount.value = String(v);
+        customVoucherLabel.textContent = String(v);
+        return v;
+      }
+
+      customVoucherAmount?.addEventListener("input", syncCustomLabel);
+      syncCustomLabel();
+
+      document.getElementById("addCustomVoucher")?.addEventListener("click", () => {
+        const v = syncCustomLabel() || MAX_CUSTOM;
+        addItem(`voucher-custom-${v}`, `Poukázka – libovolná částka (${v} Kč)`, v);
+      });
+
+      document.getElementById("clearCart")?.addEventListener("click", clearCart);
+      document.getElementById("fillDemo")?.addEventListener("click", () => {
+        addItem("voucher-commando", "Poukázka COMMANDO", 990);
+        addItem("voucher-rambo", "Poukázka RAMBO", 650);
+        setCart(true);
+      });
+
+      document.getElementById("sendOrder")?.addEventListener("click", () => {
+        const cart = loadCart();
+        const items = cartItems(cart);
+        if(items.length === 0) return;
+
+        const name = (document.getElementById("oName")?.value || "").trim();
+        const email = (document.getElementById("oEmail")?.value || "").trim();
+        const phone = (document.getElementById("oPhone")?.value || "").trim();
+        const note = (document.getElementById("oNote")?.value || "").trim();
+
+        const total = cartTotal(cart);
+        const lines = items.map(it => `- ${it.name} × ${it.qty} ks = ${it.price * it.qty} Kč`).join("\n");
+
+        const subject = encodeURIComponent("Objednávka – PaintballElite.cz (poukázky)");
+        const body = encodeURIComponent(
+`Dobrý den,
+
+posílám objednávku poukázek z webu PaintballElite.cz:
+
+Položky:
+${lines}
+
+Celkem: ${total} Kč
+
+Kontaktní údaje:
+${name ? `Jméno / firma: ${name}\n` : ""}${email ? `E-mail: ${email}\n` : ""}${phone ? `Telefon: ${phone}\n` : ""}
+
+Poznámka:
+${note || "-"}
+
+Děkuji.
+`
+        );
+        window.location.href = `mailto:info@paintballelite.cz?subject=${subject}&body=${body}`;
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key !== "Escape") return;
+        if (drawer?.getAttribute("aria-hidden") === "false") setDrawer(false);
+        if (cartModal?.getAttribute("aria-hidden") === "false") setCart(false);
+      });
+
+      renderCart();
+
+      document.querySelectorAll(".accordion details").forEach(d => {
+        const chev = d.querySelector("summary .chev");
+        const sync = () => { if(chev) chev.textContent = d.open ? "−" : "+"; };
+        sync();
+        d.addEventListener("toggle", sync);
+      });
+    })();
+  </script>
+</body>
+</html>
