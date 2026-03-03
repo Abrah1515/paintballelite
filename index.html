@@ -204,6 +204,7 @@
       cursor:pointer;
     }
 
+    /* Mobil: schovat horní tlačítko Rezervace (rezervace bude jen dole v mobilebar) */
     @media (max-width: 980px){
       .navlinks{display:none}
       .burger{display:inline-flex}
@@ -212,6 +213,8 @@
       .topbar__inner{padding: 10px 0}
       .brand__logo{width: 150px; height: 40px}
       .nav{padding: 8px 0}
+
+      .navcta .btn-primary{display:none;} /* ← tady se schová horní Rezervace na mobilu */
     }
 
     .drawer{
@@ -308,7 +311,7 @@
       color: rgba(15,23,42,.92);
       box-shadow: 0 10px 22px rgba(15,23,42,.06);
     }
-    .hero__actions{display:flex; flex-wrap:wrap; gap:10px; margin-top: 18px}
+
     .kpis{display:grid; grid-template-columns: repeat(3,1fr); gap:12px; margin-top:16px}
     @media (max-width: 980px){ .kpis{grid-template-columns:1fr} }
     .kpi{
@@ -589,6 +592,7 @@
       flex-wrap:wrap;
     }
 
+    /* Mobilebar: jediné tlačítko Rezervace na mobilu */
     .mobilebar{
       display:none;
       position:fixed;
@@ -613,47 +617,10 @@
     @media (max-width: 980px){
       .mobilebar{display:block}
       body{padding-bottom: 76px;}
+      #openCartBtn{display:none;} /* plovoucí košík schovat na mobilu */
     }
 
-    @media (prefers-reduced-motion: reduce){
-      *{scroll-behavior:auto}
-      .btn{transition:none}
-    }
-
-    .quote{
-      padding: 14px 16px;
-      border-radius: 16px;
-      border: 1px solid rgba(15,23,42,.12);
-      background: rgba(255,255,255,.76);
-      box-shadow: 0 10px 24px rgba(15,23,42,.06);
-    }
-    .quote p{margin:0; color: rgba(15,23,42,.92)}
-    .quote .who{margin-top:8px; font-weight:950; color: var(--muted); font-size: 13px}
-
-    /* FAQ compact */
-    .faqcompact{display:grid; gap:10px; margin-top:0;}
-    .faqrow{
-      border:1px solid rgba(15,23,42,.10);
-      border-radius: 14px;
-      background: rgba(255,255,255,.72);
-      padding: 12px 12px;
-    }
-    .faqrow .q{font-weight:950; margin:0 0 6px}
-    .faqrow .a{margin:0; color:var(--muted)}
-
-    /* Team */
-    .teamgrid{display:grid; gap:10px; margin-top:10px;}
-    .teamitem{
-      border:1px solid rgba(15,23,42,.10);
-      border-radius: 14px;
-      background: rgba(255,255,255,.72);
-      padding: 12px 12px;
-    }
-    .teamitem .name{font-weight:950}
-    .teamitem .role{color:var(--muted); font-size:13px; font-weight:800; margin-top:2px}
-    .teamitem .langs{color: rgba(71,85,105,.92); font-size: 12px; margin-top:6px}
-
-    /* ===== CENÍK (pro prvňáka): 3 jednoduché karty + krátká pravidla ===== */
+    /* ===== CENÍK (jednoduše): 3 karty + krátká pravidla ===== */
     .pricecards{display:grid; grid-template-columns: repeat(3,1fr); gap:16px; margin-top:18px}
     @media (max-width: 980px){ .pricecards{grid-template-columns:1fr} }
 
@@ -718,7 +685,6 @@
             <a href="#hriste">Hřiště</a>
             <a href="#cenik">Ceník</a>
             <a href="#poukazky">Poukázky</a>
-            <a href="#rezervace">Rezervace</a>
             <a href="https://photos.google.com/share/AF1QipNlAD_3AWvyHY_pRnyz8XTdPlWU8t3z9B2xnyzhYWKJYSCkFAKf2X9SEFlOQocBUg?key=MkJ5YkdBR3M2X05veFRoTGw0NHNEenJyNm41bGNB"
                target="_blank" rel="noopener">📸 Galerie</a>
             <a href="#kontakt">Kontakt</a>
@@ -726,10 +692,13 @@
           </div>
 
           <div class="navcta">
+            <!-- PC: jediné tlačítko Rezervace -->
             <a class="btn btn-primary" href="#rezervace">Rezervace</a>
+
             <a class="btn btn-outline"
                href="https://photos.google.com/share/AF1QipNlAD_3AWvyHY_pRnyz8XTdPlWU8t3z9B2xnyzhYWKJYSCkFAKf2X9SEFlOQocBUg?key=MkJ5YkdBR3M2X05veFRoTGw0NHNEenJyNm41bGNB"
                target="_blank" rel="noopener">📸 Galerie</a>
+
             <button class="burger" type="button" id="openDrawer" aria-label="Otevřít menu">MENU</button>
           </div>
         </div>
@@ -750,7 +719,6 @@
         <a href="#hriste" data-close>Hřiště</a>
         <a href="#cenik" data-close>Ceník</a>
         <a href="#poukazky" data-close>Poukázky</a>
-        <a href="#rezervace" data-close>Rezervace</a>
         <a href="https://photos.google.com/share/AF1QipNlAD_3AWvyHY_pRnyz8XTdPlWU8t3z9B2xnyzhYWKJYSCkFAKf2X9SEFlOQocBUg?key=MkJ5YkdBR3M2X05veFRoTGw0NHNEenJyNm41bGNB"
            target="_blank" rel="noopener" data-close>📸 Galerie</a>
         <a href="#kontakt" data-close>Kontakt</a>
@@ -758,7 +726,7 @@
       </div>
 
       <div class="divider"></div>
-      <a class="btn btn-primary" href="#rezervace" data-close>Rezervace</a>
+      <!-- Mobil: žádné tlačítko Rezervace v menu (rezervace je jen dole v mobilebar) -->
       <a class="btn btn-outline" href="tel:+420732273560">Zavolat</a>
       <a class="btn btn-outline" href="mailto:info@paintballelite.cz">Napsat e-mail</a>
     </div>
@@ -778,11 +746,6 @@
             <span class="pill">✅ Instruktoři + bezpečnost</span>
             <span class="pill">✅ Balíčky: COMMANDO / RAMBO / STUDENT</span>
             <span class="pill">🎁 Poukázky (6 měsíců)</span>
-          </div>
-
-          <div class="hero__actions">
-            <a class="btn btn-primary" href="#rezervace">Rezervace</a>
-            <a class="btn btn-outline" href="#poukazky">Poukázky</a>
           </div>
 
           <div class="kpis">
@@ -817,8 +780,7 @@
           <h2 class="h2" style="margin:0 0 10px">Co je to paintball?</h2>
           <p class="lead">
             Paintball je týmová hra dvou týmů, kdy dle pravidel plníte zadaný úkol – ukořistit vlajku,
-            dobývat území nebo zajistit budovu. Soupeře můžete označit barevnou kuličkou a vyřadit ho tak ze hry
-            podle scénáře.
+            dobývat území nebo zajistit budovu.
           </p>
         </article>
 
@@ -829,8 +791,6 @@
             <li><span class="dot"></span><span>Školní výlety / juniorské skupiny (scénáře upravíme)</span></li>
             <li><span class="dot"></span><span>Od menších part až po velké skupiny</span></li>
           </ul>
-          <div class="divider"></div>
-          <p class="small" style="margin:0">Jednotlivci: často se dá domluvit přidání k jiné skupině (ideálně volat koncem týdne).</p>
         </article>
       </div>
     </div>
@@ -843,974 +803,30 @@
           <h2 class="h2">Nejčastější dotazy</h2>
           <p class="lead">Rychlé odpovědi na to, co řeší lidé nejčastěji.</p>
         </div>
-        <a class="btn btn-outline" href="#rezervace">Rezervace</a>
       </div>
 
       <div class="card glass" style="margin-top:18px">
         <div class="faqcompact">
           <div class="faqrow">
             <p class="q">Od kolika let se dá hrát?</p>
-            <p class="a">Nejmladší děti u nás hrály zhruba od 8 let s doprovodem rodičů. Scénáře upravíme na delší vzdálenost a u mladších volíme křehčí kuličky.</p>
+            <p class="a">Zhruba od 8 let s doprovodem rodičů. Scénáře upravíme na delší vzdálenost.</p>
           </div>
           <div class="faqrow">
             <p class="q">Jak se platí?</p>
-            <p class="a">Platí se podle skutečné spotřeby. Po hře lze platit hotově nebo kartou. U firem je možná i platba převodem.</p>
+            <p class="a">Po hře hotově nebo kartou. U firem lze i převodem.</p>
           </div>
           <div class="faqrow">
             <p class="q">Co si vzít s sebou?</p>
-            <p class="a">Vybavení půjčíme kompletně včetně oblečení. Doporučujeme hlavně kvalitní obuv (treková/sportovní). Hodí se pití, šátek a ručník.</p>
+            <p class="a">Hlavně pevnou obuv. Vybavení půjčíme. Hodí se pití a ručník.</p>
           </div>
           <div class="faqrow">
             <p class="q">Dá se barva vyprat?</p>
-            <p class="a">Ano – barva je dobře pratelná a kuličky jsou ekologicky odbouratelné.</p>
+            <p class="a">Ano, je dobře pratelná.</p>
           </div>
-          <div class="faqrow">
-            <p class="q">Bolí paintball?</p>
-            <p class="a">Křehkost kuliček volíme podle počasí. S vhodným oblečením bývá bolestivost nízká. Doporučujeme zakrytí krku a případně ochrannou vestu.</p>
-          </div>
-        </div>
-
-        <div class="divider"></div>
-
-        <div style="display:flex; gap:10px; flex-wrap:wrap">
-          <a class="btn btn-primary" href="#rezervace">Rezervace</a>
-          <a class="btn btn-outline" href="#cenik">Ceník</a>
         </div>
       </div>
     </div>
   </section>
 
   <section class="section anchor" id="hriste">
-    <div class="container">
-      <div class="section-title">
-        <div>
-          <h2 class="h2">Hřiště</h2>
-          <p class="lead">Dvě lokality – přepněte si hřiště a projděte detaily. Výběr lokality řešte v rezervaci.</p>
-        </div>
-        <a class="btn btn-outline" href="#rezervace">Rezervace</a>
-      </div>
-
-      <div class="places-tabs" role="tablist" aria-label="Výběr hřiště">
-        <button class="tabbtn" type="button" role="tab" aria-selected="true" data-panel="panel-vietcong" id="tab-vietcong">
-          VIETCONG – Ostrava Třebovice
-        </button>
-        <button class="tabbtn" type="button" role="tab" aria-selected="false" data-panel="panel-lasvegas" id="tab-lasvegas">
-          LAS VEGAS – Hukovice
-        </button>
-      </div>
-
-      <div class="place-panel active" id="panel-vietcong" role="tabpanel" aria-labelledby="tab-vietcong">
-        <div class="place-head" style="margin-top:16px">
-          <div class="place-photo">
-            <img src="https://www.paintballelite.cz/wp-content/uploads/2023/04/VIETCONG_mapa2023l2-845x1024.png"
-                 alt="VIETCONG – mapa hřiště" loading="lazy" referrerpolicy="no-referrer">
-          </div>
-
-          <div class="place-details">
-            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap">
-              <strong style="font-size:18px;color:var(--text)">VIETCONG</strong>
-              <a class="btn btn-outline" href="https://www.paintballelite.cz/wp-content/uploads/2023/05/Provozni_rad_hriste_vietcong_2023.pdf" target="_blank" rel="noopener">
-                Provozní řád (PDF)
-              </a>
-            </div>
-
-            <div class="place-badges">
-              <span class="badge">🌿 lesní terén</span>
-              <span class="badge">🎭 scénáře</span>
-              <span class="badge">🏢 zázemí</span>
-            </div>
-
-            <h4>Kde a jak se tam dostat</h4>
-            <p>
-              Areál je v Ostravě–Třebovicích. Příjezd vede kolem Hornbachu Svinov, u elektrárny doprava,
-              po cca 200 m doprava pod železniční tunel a pak rovně přibližně 500 m.
-            </p>
-
-            <h4>Co vás čeká</h4>
-            <p>
-              Jedinečný lesní terén v centru Ostravy: vzrostlé stromy, množství zátarasů, dřevěných budov,
-              dobývání kopce „CITADELA“ a další scénáře.
-            </p>
-
-            <div class="divider"></div>
-
-            <div class="small">Správce hřiště: Ing. Jan Duda, tel. 732 273 560</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="place-panel" id="panel-lasvegas" role="tabpanel" aria-labelledby="tab-lasvegas">
-        <div class="place-head" style="margin-top:16px">
-          <div class="place-photo">
-            <img src="https://www.paintballelite.cz/wp-content/uploads/2021/02/lasvegas_gal-300x225.jpg"
-                 alt="LAS VEGAS – foto hřiště" loading="lazy" referrerpolicy="no-referrer">
-          </div>
-
-          <div class="place-details">
-            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap">
-              <strong style="font-size:18px;color:var(--text)">LAS VEGAS</strong>
-              <a class="btn btn-outline" href="https://www.paintballelite.cz/wp-content/uploads/2023/05/Provozni_rad_hriste_las_vegas_2023.pdf" target="_blank" rel="noopener">
-                Provozní řád (PDF)
-              </a>
-            </div>
-
-            <div class="place-badges">
-              <span class="badge">🏚️ areál</span>
-              <span class="badge">🧱 bunkry</span>
-              <span class="badge">🌲 lesní terén</span>
-            </div>
-
-            <h4>Co je to za areál</h4>
-            <p>
-              Vojenský areál bývalé raketové základny – budovy, bunkry, lesní terén.
-            </p>
-
-            <div class="divider"></div>
-
-            <div class="small">Správce hřiště: Ing. Jan Duda, tel. 732 273 560</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- =======================
-       CENÍK – ultra jednoduchý (pro prvňáka)
-       ======================= -->
-  <section class="section anchor" id="cenik">
-    <div class="container">
-      <div class="section-title">
-        <div>
-          <h2 class="h2">Ceník</h2>
-          <p class="lead">Vyberte balíček. Každý balíček obsahuje vybavení + instruktora + hry.</p>
-        </div>
-        <a class="btn btn-primary" href="#rezervace">Rezervace</a>
-      </div>
-
-      <div class="pricecards">
-        <article class="glass pricecard">
-          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap">
-            <h3 class="h3">COMMANDO</h3>
-            <span class="topbadge">TOP</span>
-          </div>
-          <p class="pricebig">990 Kč <span class="small" style="font-weight:800">/ osoba</span></p>
-
-          <div class="pillsmini">
-            <span class="pillmini">🎯 800 kuliček</span>
-            <span class="pillmini">⏱️ ~ 2 hod</span>
-            <span class="pillmini">👥 min. 8</span>
-          </div>
-
-          <ul class="list">
-            <li><span class="dot"></span><span>V ceně i <strong>maskáče</strong></span></li>
-            <li><span class="dot"></span><span>Vybavení: značkovač, maska, rukavice, tlak</span></li>
-            <li><span class="dot"></span><span>Instruktor + scénáře her</span></li>
-          </ul>
-        </article>
-
-        <article class="glass pricecard">
-          <h3 class="h3">RAMBO</h3>
-          <p class="pricebig">650 Kč <span class="small" style="font-weight:800">/ osoba</span></p>
-
-          <div class="pillsmini">
-            <span class="pillmini">🎯 500 kuliček</span>
-            <span class="pillmini">⏱️ ~ 2 hod</span>
-            <span class="pillmini">👥 min. 15</span>
-          </div>
-
-          <ul class="list">
-            <li><span class="dot"></span><span>Vybavení: značkovač, maska, rukavice, tlak</span></li>
-            <li><span class="dot"></span><span>Instruktor + scénáře her</span></li>
-            <li><span class="dot"></span><span>Maskáče volitelně: <strong>100 Kč</strong></span></li>
-          </ul>
-        </article>
-
-        <article class="glass pricecard">
-          <h3 class="h3">STUDENT</h3>
-          <p class="pricebig">390 Kč <span class="small" style="font-weight:800">/ osoba</span></p>
-
-          <div class="pillsmini">
-            <span class="pillmini">🎯 300 kuliček</span>
-            <span class="pillmini">⏱️ ~ 2 hod</span>
-            <span class="pillmini">👥 min. 20</span>
-          </div>
-
-          <ul class="list">
-            <li><span class="dot"></span><span>Pro skupiny do 18 let</span></li>
-            <li><span class="dot"></span><span>Termíny: <strong>Po–Pá 8–14 h</strong></span></li>
-            <li><span class="dot"></span><span>Vybavení + instruktor v ceně</span></li>
-          </ul>
-        </article>
-      </div>
-
-      <div class="card glass rulesbox">
-        <h3 class="h3" style="margin-top:0">Jednoduchá pravidla</h3>
-        <ul class="list" style="margin-top:10px">
-          <li><span class="dot"></span><span>Další kuličky: <strong>1 Kč / ks</strong></span></li>
-          <li><span class="dot"></span><span>Platba: <strong>karta / hotově / faktura</strong></span></li>
-          <li><span class="dot"></span><span>Hraje se za každého počasí</span></li>
-          <li><span class="dot"></span><span>Občerstvení (volitelné): min. 10 osob – steak 150 g <strong>390 Kč</strong>, 250 g <strong>490 Kč</strong></span></li>
-          <li><span class="dot"></span><span>Do 18 let: souhlas zákonného zástupce (PDF)</span></li>
-        </ul>
-
-        <div class="divider"></div>
-
-        <div style="display:flex; gap:10px; flex-wrap:wrap">
-          <a class="btn btn-primary" href="#rezervace">Rezervace</a>
-          <a class="btn btn-outline" href="#poukazky">Poukázky</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section anchor" id="poukazky">
-    <div class="container">
-      <div class="section-title">
-        <div>
-          <h2 class="h2">Poukázky (e-shop)</h2>
-          <p class="lead">Poukázky na paintball – přidejte do košíku a odešlete objednávku e-mailem. Platnost <strong>6 měsíců</strong>.</p>
-        </div>
-        <button class="btn btn-secondary" type="button" id="openCartTop">Otevřít košík</button>
-      </div>
-
-      <div class="shop-grid" style="margin-top:18px">
-        <article class="card glass product-card">
-          <div class="product-thumb">
-            <span class="tag">Poukázka</span>
-            <img src="https://www.paintballelite.cz/wp-content/uploads/2022/02/pouka_str.gif" alt="Poukázka na paintball" loading="lazy" referrerpolicy="no-referrer">
-          </div>
-          <div class="prod-meta">
-            <h3 class="h3">Poukázka – balíček COMMANDO</h3>
-            <div class="prod-price">990 Kč</div>
-            <p class="muted" style="margin:0">800 ks kuliček, 2 hodiny hry, půjčovné (maskáče, značkovač, maska, tlak, rukavice).</p>
-          </div>
-          <div class="prod-actions">
-            <button class="btn btn-primary" type="button" data-add data-id="voucher-commando" data-name="Poukázka COMMANDO" data-price="990">Přidat</button>
-            <button class="btn btn-outline" type="button" data-open-cart>Košík</button>
-          </div>
-        </article>
-
-        <article class="card glass product-card">
-          <div class="product-thumb">
-            <span class="tag">Poukázka</span>
-            <img src="https://www.paintballelite.cz/wp-content/uploads/2022/02/pouka_str.gif" alt="Poukázka na paintball" loading="lazy" referrerpolicy="no-referrer">
-          </div>
-          <div class="prod-meta">
-            <h3 class="h3">Poukázka – balíček RAMBO</h3>
-            <div class="prod-price">650 Kč</div>
-            <p class="muted" style="margin:0">500 ks kuliček, 2 hodiny hry, půjčovné (značkovač, maska, tlak, rukavice).</p>
-          </div>
-          <div class="prod-actions">
-            <button class="btn btn-primary" type="button" data-add data-id="voucher-rambo" data-name="Poukázka RAMBO" data-price="650">Přidat</button>
-            <button class="btn btn-outline" type="button" data-open-cart>Košík</button>
-          </div>
-        </article>
-
-        <article class="card glass product-card">
-          <div class="product-thumb">
-            <span class="tag">Poukázka</span>
-            <img src="https://www.paintballelite.cz/wp-content/uploads/2022/02/pouka_str.gif" alt="Poukázka na paintball" loading="lazy" referrerpolicy="no-referrer">
-          </div>
-          <div class="prod-meta">
-            <h3 class="h3">Poukázka – libovolná částka</h3>
-            <div class="inline">
-              <div class="prod-price"><span id="customVoucherLabel">1000</span> Kč</div>
-              <span class="small">(rozmezí 990–1000)</span>
-            </div>
-            <div class="inline" style="margin-top:6px">
-              <input id="customVoucherAmount" type="number" min="990" max="1000" step="10" value="1000" aria-label="Částka poukazu">
-              <button class="btn btn-primary" type="button" id="addCustomVoucher">Přidat</button>
-            </div>
-            <p class="muted" style="margin:0">Poukázka na částku dle výběru. Do poznámky lze napsat jméno obdarovaného.</p>
-          </div>
-          <div class="prod-actions">
-            <button class="btn btn-outline" type="button" data-open-cart>Košík</button>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section anchor" id="rezervace">
-    <div class="container">
-      <div class="section-title">
-        <div>
-          <h2 class="h2">Rezervace akce</h2>
-          <p class="lead">Vyplňte prosím datum i čas. Pokud termín nebude dostupný, ozveme se zpět.</p>
-          <div class="hint" style="margin-top:14px">
-            <strong>Prosím vyplňte všechna políčka včetně telefonu.</strong>
-            Pokud termín nebude dostupný, ozveme se obratem. Změny nebo potvrzení řešte ideálně telefonicky
-            (732 273 560) nebo e-mailem. Minimální počet je 8 hráčů a hraje se za každého počasí.
-            Do 18 let je potřeba souhlas zákonného zástupce (PDF).
-          </div>
-        </div>
-        <a class="btn btn-outline" href="tel:+420732273560">☎ 732 273 560</a>
-      </div>
-
-      <div class="grid grid-2" style="margin-top:18px; align-items:start">
-        <div class="card glass">
-          <h3 class="h3">Poptávka termínu (e-mail)</h3>
-          <p class="small" style="margin:0 0 10px">Po kliknutí se otevře e-mail s předvyplněným textem.</p>
-          <div class="divider"></div>
-
-          <div class="formgrid">
-            <div class="field">
-              <label for="rName">Jméno / firma</label>
-              <input id="rName" placeholder="např. Jan Novák / ABC s.r.o." />
-            </div>
-            <div class="field">
-              <label for="rEmail">E-mail</label>
-              <input id="rEmail" type="email" placeholder="např. jan@email.cz" />
-            </div>
-
-            <div class="field">
-              <label for="rPhone">Telefon</label>
-              <input id="rPhone" placeholder="např. +420 777 000 000" />
-            </div>
-            <div class="field">
-              <label for="rPlayers">Počet hráčů</label>
-              <input id="rPlayers" type="number" min="1" value="10" />
-            </div>
-
-            <div class="field">
-              <label for="rDate">Datum</label>
-              <input id="rDate" type="date" />
-            </div>
-            <div class="field">
-              <label for="rTime">Čas</label>
-              <input id="rTime" type="time" />
-            </div>
-
-            <div class="field">
-              <label for="rPlace">Lokalita</label>
-              <select id="rPlace">
-                <option>VIETCONG – Ostrava Třebovice</option>
-                <option>LAS VEGAS – Hukovice u Nového Jičína</option>
-                <option>Nezáleží / poradíte</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="rPack">Balíček</label>
-              <select id="rPack">
-                <option>COMMANDO</option>
-                <option>RAMBO</option>
-                <option>STUDENT</option>
-                <option>NA MÍRU</option>
-              </select>
-            </div>
-
-            <div class="field" style="grid-column:1/-1">
-              <label for="rFood">Občerstvení (volitelné)</label>
-              <select id="rFood">
-                <option>Ne</option>
-                <option>Steak 150 g (390 Kč / osoba)</option>
-                <option>Steak 250 g (490 Kč / osoba)</option>
-                <option>Jiné dle dohody</option>
-              </select>
-            </div>
-
-            <div class="field" style="grid-column:1/-1">
-              <label for="rNote">Poznámka</label>
-              <textarea id="rNote" rows="4" placeholder="např. turnajový formát, rozdělení do týmů, poukázky, občerstvení..."></textarea>
-            </div>
-
-            <div class="field" style="grid-column:1/-1">
-              <button class="btn btn-primary" type="button" id="sendReservation">Odeslat rezervaci e-mailem</button>
-              <div class="small">Pro rychlou domluvu doporučujeme telefon.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card glass">
-          <h3 class="h3">Shrnutí pravidel</h3>
-          <ul class="list">
-            <li><span class="dot"></span><span>Minimum hráčů: COMMANDO 8, RAMBO 15, STUDENT 20 (do 18 let).</span></li>
-            <li><span class="dot"></span><span>Hraje se za každého počasí (v zimě dle počasí).</span></li>
-            <li><span class="dot"></span><span>Do 18 let: dle provozních řádů + souhlas zákonného zástupce (PDF).</span></li>
-          </ul>
-
-          <div class="divider"></div>
-
-          <h3 class="h3">PDF ke stažení</h3>
-          <div class="links" style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap">
-            <a class="btn btn-outline" href="https://www.paintballelite.cz/wp-content/uploads/2023/05/Provozni_rad_hriste_vietcong_2023.pdf" target="_blank" rel="noopener">Řád VIETCONG (PDF)</a>
-            <a class="btn btn-outline" href="https://www.paintballelite.cz/wp-content/uploads/2023/05/Provozni_rad_hriste_las_vegas_2023.pdf" target="_blank" rel="noopener">Řád LAS VEGAS (PDF)</a>
-            <a class="btn btn-outline" href="https://www.paintballelite.cz/wp-content/uploads/2018/12/souhlas_zakon_zast_paintball.pdf" target="_blank" rel="noopener">Souhlas (PDF)</a>
-          </div>
-
-          <div class="divider"></div>
-          <div class="hint">
-            <strong>Nejrychlejší domluva:</strong>
-            <a href="tel:+420732273560" style="font-weight:900;color:var(--brand);text-decoration:none;">732 273 560</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section anchor" id="kontakt">
-    <div class="container">
-      <div class="section-title">
-        <div>
-          <h2 class="h2">Kontakt</h2>
-          <p class="lead">Zavolejte nebo napište – domluvíme termín, lokalitu a balíček.</p>
-        </div>
-        <div style="display:flex; gap:10px; flex-wrap:wrap">
-          <a class="btn btn-primary" href="#rezervace">Rezervace</a>
-          <a class="btn btn-outline" href="mailto:info@paintballelite.cz">E-mail</a>
-          <button class="btn btn-secondary" type="button" id="openCartBottom">Košík poukázek</button>
-        </div>
-      </div>
-
-      <div class="grid grid-2" style="margin-top:18px; align-items:stretch">
-        <div class="card glass">
-          <h3 class="h3">Kontaktní údaje</h3>
-          <p class="muted" style="margin:0">
-            Telefon: <a href="tel:+420732273560" style="font-weight:900; color:var(--brand); text-decoration:none;">+420 732 273 560</a><br>
-            E-mail: <a href="mailto:info@paintballelite.cz" style="font-weight:900; color:var(--brand); text-decoration:none;">info@paintballelite.cz</a>
-          </p>
-          <div class="divider"></div>
-          <p class="muted" style="margin:0">
-            kancelář:<br>
-            <strong>Duing Distribution s.r.o.</strong><br>
-            Radniční 910/73<br>
-            715 00 Ostrava, CZ
-          </p>
-          <div class="divider"></div>
-          <p class="muted" style="margin:0">
-            IČO: <strong>02862701</strong><br>
-            DIČ: <strong>CZ02862701</strong><br>
-            Další telefon: <a href="tel:+420602656107" style="font-weight:900; color:var(--brand); text-decoration:none;">+420 602 656 107</a><br>
-            Otevírací doba: <strong>kdykoli za denního světla</strong>
-          </p>
-        </div>
-
-        <div class="card glass">
-          <h3 class="h3">Rychlá zpráva (e-mail)</h3>
-          <p class="small" style="margin:0 0 10px">Otevře e-mail s vyplněným textem.</p>
-
-          <div class="grid" style="gap:10px">
-            <div class="field">
-              <label for="cName">Jméno / firma</label>
-              <input id="cName" placeholder="např. Novák / ABC s.r.o." />
-            </div>
-            <div class="field">
-              <label for="cMsg">Zpráva</label>
-              <textarea id="cMsg" rows="4" placeholder="např. dotaz na termíny, hřiště, poukázky..."></textarea>
-            </div>
-
-            <button class="btn btn-primary" type="button" id="sendContact">Odeslat e-mail</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section anchor" id="tym">
-    <div class="container">
-      <div class="section-title">
-        <div>
-          <h2 class="h2">Náš tým – instruktoři</h2>
-          <p class="lead">Organizace, scénáře a dohled po celou dobu – tempo i náročnost přizpůsobíme skupině.</p>
-        </div>
-        <a class="btn btn-primary" href="#rezervace">Rezervace</a>
-      </div>
-
-      <div class="card glass" style="margin-top:18px">
-        <div class="teamgrid">
-          <div class="teamitem">
-            <div class="name">Ing. Jan Duda</div>
-            <div class="role">Rezervace termínů, firemní turnaje a větší akce</div>
-            <div class="langs">CZ / EN / DE / PL</div>
-          </div>
-
-          <div class="teamitem">
-            <div class="name">Ing. Jiří Duda</div>
-            <div class="role">Organizace akcí, školy a firemní akce</div>
-            <div class="langs">CZ / PL / RU</div>
-          </div>
-
-          <div class="teamitem">
-            <div class="name">Mgr. Věra Dudová</div>
-            <div class="role">Catering a doplňkové sportovní atrakce</div>
-            <div class="langs">CZ / PL / EN</div>
-          </div>
-
-          <div class="teamitem">
-            <div class="name">Petr Logan</div>
-            <div class="role">Instruktor, scénáře her, profesionální hasič</div>
-            <div class="langs">CZ / EN</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section anchor" id="reference">
-    <div class="container">
-      <div class="section-title">
-        <div>
-          <h2 class="h2">Napsali o nás</h2>
-          <p class="lead">Krátké dojmy z akcí.</p>
-        </div>
-        <a class="btn btn-outline" href="#rezervace">Rezervace</a>
-      </div>
-
-      <div class="grid grid-2" style="margin-top:18px">
-        <div class="quote">
-          <p>Akce se povedla, kolegové byli spokojení. Zázemí bylo připravené a líbilo se nám, že bylo víc variant her.</p>
-          <div class="who">J. F. – TIETO, Ostrava</div>
-        </div>
-
-        <div class="quote">
-          <p>Byl to překvapivě silný zážitek a velká zábava. Člověk se naučí nové věci a rád se vrátí znovu.</p>
-          <div class="who">Michal Drozd – Ostrava</div>
-        </div>
-
-        <div class="quote">
-          <p>Skvělé a zábavné hry, přátelský a zkušený personál a hřiště s mnoha herními možnostmi.</p>
-          <div class="who">Jana Macková – Ostrava</div>
-        </div>
-
-        <div class="quote">
-          <p>Před první hrou jsem měl obavy ze zásahů, ale rychle to přešlo. Díky trpělivé obsluze jsme si to fakt užili.</p>
-          <div class="who">Kamil Velebil – Ostrava</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__bottom" style="margin-top:0; padding-top:0; border-top:0">
-        <div>© <span id="year"></span> PaintballElite.cz – Všechna práva vyhrazena</div>
-        <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center">
-          <a href="#uvod">Zpět na začátek ↑</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <button class="btn btn-secondary" type="button" id="openCartBtn"
-          style="position:fixed; right:16px; bottom:16px; z-index:70; box-shadow:var(--shadow); border:1px solid rgba(15,23,42,.14); background:rgba(255,255,255,.90); color:var(--text); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);">
-    🎁 Poukázky <b id="cartCount"
-      style="background: rgba(15,23,42,.06); border:1px solid rgba(15,23,42,.14); border-radius:999px; padding:4px 10px; font-size:12px; color: rgba(15,23,42,.92);">0</b>
-  </button>
-
-  <div class="mobilebar" aria-label="Rychlé akce (mobil)">
-    <div class="mobilebar__inner">
-      <a class="btn btn-primary" href="#rezervace">Rezervace</a>
-      <button class="btn btn-secondary" type="button" id="openCartMobile" aria-label="Otevřít košík">
-        🧾 <b id="cartCountMobile"
-          style="background: rgba(15,23,42,.06); border:1px solid rgba(15,23,42,.14); border-radius:999px; padding:4px 10px; font-size:12px; color: rgba(15,23,42,.92);">0</b>
-      </button>
-    </div>
-  </div>
-
-  <div class="modal" id="cartModal" aria-hidden="true">
-    <div class="modal__panel" role="dialog" aria-modal="true" aria-label="Košík poukázek">
-      <div class="modal__head">
-        <strong>Košík poukázek</strong>
-        <button class="close" type="button" id="closeCart">Zavřít</button>
-      </div>
-
-      <div class="modal__body">
-        <div>
-          <div id="cartLines" class="grid" style="gap:10px"></div>
-          <div class="divider"></div>
-          <div style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; align-items:center">
-            <strong>Celkem:</strong>
-            <strong style="font-size:18px; color:var(--text)"><span id="cartTotal">0</span> Kč</strong>
-          </div>
-
-          <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap">
-            <button class="btn btn-outline" type="button" id="clearCart">Vyprázdnit košík</button>
-            <button class="btn btn-secondary" type="button" id="fillDemo">Vyplnit demo</button>
-          </div>
-
-          <p class="small" style="margin:12px 0 0">
-            Objednávka se odešle e-mailem s položkami a cenou. (Později lze napojit platby.)
-          </p>
-        </div>
-
-        <div class="card glass" style="margin:0">
-          <h3 class="h3">Objednávkové údaje</h3>
-          <div class="grid" style="gap:10px">
-            <div class="field">
-              <label for="oName">Jméno / firma</label>
-              <input id="oName" placeholder="např. Jan Novák / Firma s.r.o." />
-            </div>
-            <div class="field">
-              <label for="oEmail">E-mail</label>
-              <input id="oEmail" type="email" placeholder="např. jan@email.cz" />
-            </div>
-            <div class="field">
-              <label for="oPhone">Telefon</label>
-              <input id="oPhone" placeholder="např. +420 777 000 000" />
-            </div>
-            <div class="field">
-              <label for="oNote">Poznámka</label>
-              <textarea id="oNote" rows="4" placeholder="např. poukázka jako PDF / jméno obdarovaného..."></textarea>
-            </div>
-
-            <button class="btn btn-primary" type="button" id="sendOrder">Odeslat objednávku e-mailem</button>
-            <p class="small" style="margin:0" id="orderHint">Košík je prázdný – přidejte nejdřív poukázku.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    (function(){
-      const yearEl = document.getElementById("year");
-      if(yearEl) yearEl.textContent = new Date().getFullYear();
-
-      const drawer = document.getElementById("drawer");
-      const openDrawer = document.getElementById("openDrawer");
-      const closeDrawer = document.getElementById("closeDrawer");
-
-      function setDrawer(open){
-        if(!drawer) return;
-        drawer.setAttribute("aria-hidden", open ? "false" : "true");
-        document.body.style.overflow = open ? "hidden" : "";
-      }
-
-      openDrawer?.addEventListener("click", () => setDrawer(true));
-      closeDrawer?.addEventListener("click", () => setDrawer(false));
-      drawer?.addEventListener("click", (e) => { if(e.target === drawer) setDrawer(false); });
-      drawer?.querySelectorAll("[data-close]")?.forEach(a => a.addEventListener("click", () => setDrawer(false)));
-
-      document.getElementById("sendContact")?.addEventListener("click", () => {
-        const name = (document.getElementById("cName")?.value || "").trim();
-        const msg  = (document.getElementById("cMsg")?.value || "").trim();
-        const subject = encodeURIComponent("Kontakt – PaintballElite.cz");
-        const body = encodeURIComponent(
-`Dobrý den,
-
-${name ? `Jméno / firma: ${name}\n` : ""}
-
-Zpráva:
-${msg || "(doplňte text)"}
-
-Děkuji.
-`
-        );
-        window.location.href = `mailto:info@paintballelite.cz?subject=${subject}&body=${body}`;
-      });
-
-      function fmtDateTime(d, t){
-        const ds = (d || "").trim();
-        const ts = (t || "").trim();
-        if(!ds && !ts) return "";
-        if(ds && ts) return `${ds} ${ts}`;
-        return ds || ts;
-      }
-
-      document.getElementById("sendReservation")?.addEventListener("click", () => {
-        const name = (document.getElementById("rName")?.value || "").trim();
-        const email = (document.getElementById("rEmail")?.value || "").trim();
-        const phone = (document.getElementById("rPhone")?.value || "").trim();
-        const players = (document.getElementById("rPlayers")?.value || "").trim();
-        const date = (document.getElementById("rDate")?.value || "").trim();
-        const time = (document.getElementById("rTime")?.value || "").trim();
-        const place = (document.getElementById("rPlace")?.value || "").trim();
-        const pack = (document.getElementById("rPack")?.value || "").trim();
-        const food = (document.getElementById("rFood")?.value || "").trim();
-        const note = (document.getElementById("rNote")?.value || "").trim();
-
-        const subject = encodeURIComponent("Rezervace akce – PaintballElite.cz");
-        const when = fmtDateTime(date, time);
-
-        const body = encodeURIComponent(
-`Dobrý den,
-
-mám zájem o rezervaci paintball akce.
-
-Jméno / firma: ${name || "-"}
-E-mail: ${email || "-"}
-Telefon: ${phone || "-"}
-
-Počet hráčů: ${players || "-"}
-Preferovaný termín: ${when || "-"}
-Lokalita: ${place || "-"}
-Balíček: ${pack || "-"}
-
-Občerstvení (volitelné): ${food || "-"}
-
-Poznámka:
-${note || "-"}
-
-Děkuji a přeji hezký den.
-`
-        );
-        window.location.href = `mailto:info@paintballelite.cz?subject=${subject}&body=${body}`;
-      });
-
-      (function(){
-        const tabs = Array.from(document.querySelectorAll(".tabbtn[role='tab'][data-panel]"));
-        const panels = Array.from(document.querySelectorAll(".place-panel[role='tabpanel']"));
-        if(!tabs.length || !panels.length) return;
-
-        function activate(tab){
-          const targetId = tab.dataset.panel;
-          tabs.forEach(t => {
-            const on = t === tab;
-            t.setAttribute("aria-selected", on ? "true" : "false");
-            t.tabIndex = on ? 0 : -1;
-          });
-          panels.forEach(p => p.classList.toggle("active", p.id === targetId));
-        }
-
-        tabs.forEach((t, i) => t.tabIndex = (t.getAttribute("aria-selected") === "true" || i === 0) ? 0 : -1);
-        tabs.forEach((t) => t.addEventListener("click", (e) => { e.preventDefault(); activate(t); }));
-
-        tabs.forEach((t, idx) => t.addEventListener("keydown", (e) => {
-          const key = e.key;
-          if(key === "ArrowRight" || key === "ArrowDown"){
-            e.preventDefault();
-            const next = tabs[(idx + 1) % tabs.length];
-            next.focus(); activate(next);
-          } else if(key === "ArrowLeft" || key === "ArrowUp"){
-            e.preventDefault();
-            const prev = tabs[(idx - 1 + tabs.length) % tabs.length];
-            prev.focus(); activate(prev);
-          } else if(key === "Enter" || key === " "){
-            e.preventDefault();
-            activate(t);
-          }
-        }));
-      })();
-
-      const CART_KEY = "pbe_cart_v1_vouchers";
-      const cartCountEl = document.getElementById("cartCount");
-      const cartCountMobileEl = document.getElementById("cartCountMobile");
-      const cartTotalEl = document.getElementById("cartTotal");
-      const cartLinesEl = document.getElementById("cartLines");
-      const orderHintEl = document.getElementById("orderHint");
-
-      function loadCart(){
-        try { return JSON.parse(localStorage.getItem(CART_KEY)) || {}; } catch(e){ return {}; }
-      }
-      function saveCart(cart){
-        localStorage.setItem(CART_KEY, JSON.stringify(cart));
-      }
-      function cartItems(cart){
-        return Object.values(cart);
-      }
-      function cartQty(cart){
-        return cartItems(cart).reduce((s, it) => s + it.qty, 0);
-      }
-      function cartTotal(cart){
-        return cartItems(cart).reduce((s, it) => s + (it.price * it.qty), 0);
-      }
-
-      function escapeHtml(s){
-        return String(s).replace(/[&<>"']/g, (m)=>({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;" }[m]));
-      }
-
-      function renderCart(){
-        const cart = loadCart();
-        const qty = cartQty(cart);
-        const total = cartTotal(cart);
-
-        if(cartCountEl) cartCountEl.textContent = qty;
-        if(cartCountMobileEl) cartCountMobileEl.textContent = qty;
-        if(cartTotalEl) cartTotalEl.textContent = total;
-
-        if(!cartLinesEl) return;
-        cartLinesEl.innerHTML = "";
-        const items = cartItems(cart);
-
-        const sendBtn = document.getElementById("sendOrder");
-
-        if(items.length === 0){
-          cartLinesEl.innerHTML = `<div class="card glass" style="box-shadow:none">
-            <strong>Košík je prázdný.</strong>
-            <div class="small" style="margin-top:6px">Přidejte poukázku v sekci „Poukázky“.</div>
-          </div>`;
-          if(orderHintEl) orderHintEl.textContent = "Košík je prázdný – přidejte nejdřív poukázku.";
-          if(sendBtn) sendBtn.disabled = true;
-          return;
-        }
-
-        if(sendBtn) sendBtn.disabled = false;
-        if(orderHintEl) orderHintEl.textContent = "Zkontrolujte položky a odešlete objednávku e-mailem.";
-
-        items.forEach(it => {
-          const line = document.createElement("div");
-          line.className = "cartline";
-          line.innerHTML = `
-            <div>
-              <div style="font-weight:950; color:var(--text)">${escapeHtml(it.name)}</div>
-              <div class="small">${it.price} Kč / ks</div>
-            </div>
-            <div style="display:grid; gap:8px; justify-items:end">
-              <div class="qty">
-                <button type="button" data-dec="${it.id}" aria-label="Mínus">−</button>
-                <input type="number" min="1" value="${it.qty}" data-qty="${it.id}" aria-label="Množství">
-                <button type="button" data-inc="${it.id}" aria-label="Plus">+</button>
-              </div>
-              <div style="font-weight:950">${it.price * it.qty} Kč</div>
-              <button class="btn btn-danger" style="padding:10px 12px" type="button" data-rem="${it.id}">Odebrat</button>
-            </div>
-          `;
-          cartLinesEl.appendChild(line);
-        });
-
-        cartLinesEl.querySelectorAll("[data-inc]").forEach(btn => {
-          btn.addEventListener("click", () => changeQty(btn.getAttribute("data-inc"), +1));
-        });
-        cartLinesEl.querySelectorAll("[data-dec]").forEach(btn => {
-          btn.addEventListener("click", () => changeQty(btn.getAttribute("data-dec"), -1));
-        });
-        cartLinesEl.querySelectorAll("[data-rem]").forEach(btn => {
-          btn.addEventListener("click", () => removeItem(btn.getAttribute("data-rem")));
-        });
-        cartLinesEl.querySelectorAll("input[data-qty]").forEach(inp => {
-          inp.addEventListener("change", () => setQty(inp.getAttribute("data-qty"), parseInt(inp.value || "1", 10)));
-        });
-      }
-
-      function addItem(id, name, price){
-        const cart = loadCart();
-        if(!cart[id]) cart[id] = {id, name, price: Number(price), qty: 0};
-        cart[id].qty += 1;
-        saveCart(cart);
-        renderCart();
-      }
-      function changeQty(id, delta){
-        const cart = loadCart();
-        if(!cart[id]) return;
-        cart[id].qty = Math.max(1, cart[id].qty + delta);
-        saveCart(cart);
-        renderCart();
-      }
-      function setQty(id, qty){
-        const cart = loadCart();
-        if(!cart[id]) return;
-        const q = Math.max(1, Number.isFinite(qty) ? qty : 1);
-        cart[id].qty = q;
-        saveCart(cart);
-        renderCart();
-      }
-      function removeItem(id){
-        const cart = loadCart();
-        delete cart[id];
-        saveCart(cart);
-        renderCart();
-      }
-      function clearCart(){
-        saveCart({});
-        renderCart();
-      }
-
-      const cartModal = document.getElementById("cartModal");
-      const openCartBtn = document.getElementById("openCartBtn");
-      const openCartTop = document.getElementById("openCartTop");
-      const openCartBottom = document.getElementById("openCartBottom");
-      const openCartMobile = document.getElementById("openCartMobile");
-      const closeCart = document.getElementById("closeCart");
-
-      function setCart(open){
-        if(!cartModal) return;
-        cartModal.setAttribute("aria-hidden", open ? "false" : "true");
-        document.body.style.overflow = open ? "hidden" : "";
-        if(open) renderCart();
-      }
-
-      openCartBtn?.addEventListener("click", ()=>setCart(true));
-      openCartTop?.addEventListener("click", ()=>setCart(true));
-      openCartBottom?.addEventListener("click", ()=>setCart(true));
-      openCartMobile?.addEventListener("click", ()=>setCart(true));
-      closeCart?.addEventListener("click", ()=>setCart(false));
-      cartModal?.addEventListener("click", (e)=>{ if(e.target === cartModal) setCart(false); });
-      document.querySelectorAll("[data-open-cart]")?.forEach(btn => btn.addEventListener("click", ()=>setCart(true)));
-
-      document.querySelectorAll("[data-add]").forEach(btn => {
-        btn.addEventListener("click", () => addItem(btn.dataset.id, btn.dataset.name, btn.dataset.price));
-      });
-
-      const MIN_CUSTOM = 990;
-      const MAX_CUSTOM = 1000;
-
-      function clampCustom(v){
-        const n = Number.isFinite(v) ? v : MAX_CUSTOM;
-        return Math.min(MAX_CUSTOM, Math.max(MIN_CUSTOM, n));
-      }
-
-      const customVoucherAmount = document.getElementById("customVoucherAmount");
-      const customVoucherLabel  = document.getElementById("customVoucherLabel");
-
-      function syncCustomLabel(){
-        if(!customVoucherAmount || !customVoucherLabel) return;
-        const raw = parseInt(customVoucherAmount.value || String(MAX_CUSTOM), 10);
-        const v = clampCustom(Number.isFinite(raw) ? raw : MAX_CUSTOM);
-        customVoucherAmount.value = String(v);
-        customVoucherLabel.textContent = String(v);
-        return v;
-      }
-
-      customVoucherAmount?.addEventListener("input", syncCustomLabel);
-      syncCustomLabel();
-
-      document.getElementById("addCustomVoucher")?.addEventListener("click", () => {
-        const v = syncCustomLabel() || MAX_CUSTOM;
-        addItem(`voucher-custom-${v}`, `Poukázka – libovolná částka (${v} Kč)`, v);
-      });
-
-      document.getElementById("clearCart")?.addEventListener("click", clearCart);
-      document.getElementById("fillDemo")?.addEventListener("click", () => {
-        addItem("voucher-commando", "Poukázka COMMANDO", 990);
-        addItem("voucher-rambo", "Poukázka RAMBO", 650);
-        setCart(true);
-      });
-
-      document.getElementById("sendOrder")?.addEventListener("click", () => {
-        const cart = loadCart();
-        const items = cartItems(cart);
-        if(items.length === 0) return;
-
-        const name = (document.getElementById("oName")?.value || "").trim();
-        const email = (document.getElementById("oEmail")?.value || "").trim();
-        const phone = (document.getElementById("oPhone")?.value || "").trim();
-        const note = (document.getElementById("oNote")?.value || "").trim();
-
-        const total = cartTotal(cart);
-        const lines = items.map(it => `- ${it.name} × ${it.qty} ks = ${it.price * it.qty} Kč`).join("\n");
-
-        const subject = encodeURIComponent("Objednávka – PaintballElite.cz (poukázky)");
-        const body = encodeURIComponent(
-`Dobrý den,
-
-posílám objednávku poukázek z webu PaintballElite.cz:
-
-Položky:
-${lines}
-
-Celkem: ${total} Kč
-
-Kontaktní údaje:
-${name ? `Jméno / firma: ${name}\n` : ""}${email ? `E-mail: ${email}\n` : ""}${phone ? `Telefon: ${phone}\n` : ""}
-
-Poznámka:
-${note || "-"}
-
-Děkuji.
-`
-        );
-        window.location.href = `mailto:info@paintballelite.cz?subject=${subject}&body=${body}`;
-      });
-
-      document.addEventListener("keydown", (e) => {
-        if (e.key !== "Escape") return;
-        if (drawer?.getAttribute("aria-hidden") === "false") setDrawer(false);
-        if (cartModal?.getAttribute("aria-hidden") === "false") setCart(false);
-      });
-
-      renderCart();
-    })();
-  </script>
-</body>
-</html>
+    <div
