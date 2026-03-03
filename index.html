@@ -23,13 +23,11 @@
       --brand:#38AFE2;
       --brand2:#22A6DF;
       --accent:#FF6A3D;
-      --ok:#16a34a;
 
       --shadow: 0 24px 60px rgba(15,23,42,.14);
       --shadow-soft: 0 14px 40px rgba(15,23,42,.10);
 
       --radius: 20px;
-      --radius-sm: 14px;
       --max: 1180px;
 
       --header-offset: 118px;
@@ -55,15 +53,10 @@
     .grid{display:grid; gap:16px}
     .grid-2{grid-template-columns: 1fr 1fr}
     .grid-3{grid-template-columns: repeat(3,1fr)}
-    .grid-4{grid-template-columns: repeat(4,1fr)}
 
-    @media (max-width: 1100px){
-      .grid-4{grid-template-columns: repeat(2,1fr)}
-    }
     @media (max-width: 980px){
       :root{ --header-offset: 92px; }
       .grid-2,.grid-3{grid-template-columns:1fr}
-      .grid-4{grid-template-columns:1fr}
       .section{padding:56px 0}
     }
     @media (max-width: 560px){
@@ -329,16 +322,6 @@
     }
     .kpi span{display:block; font-weight:800; color:var(--muted); font-size: 13px; margin-top:4px}
 
-    .badge-top{
-      display:inline-flex; align-items:center; gap:8px;
-      border-radius: 999px;
-      padding: 7px 11px;
-      background: rgba(56,175,226,.14);
-      border: 1px solid rgba(56,175,226,.28);
-      font-weight: 950;
-      font-size: 12px;
-      color: rgba(15,23,42,.90);
-    }
     .list{
       margin: 12px 0 0; padding:0; list-style:none;
       color: var(--muted);
@@ -386,30 +369,6 @@
     .prod-meta{display:grid; gap:8px}
     .inline{display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
     .inline input{width: 220px;}
-
-    .cartbtn{
-      position: fixed;
-      right: 16px;
-      bottom: 16px;
-      z-index: 70;
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(15,23,42,.14);
-      background: rgba(255,255,255,.90);
-      color: var(--text);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-    .cartbtn b{
-      background: rgba(15,23,42,.06);
-      border:1px solid rgba(15,23,42,.14);
-      border-radius: 999px;
-      padding: 4px 10px;
-      font-size: 12px;
-      color: rgba(15,23,42,.92);
-    }
-    @media (max-width: 980px){
-      .cartbtn{display:none}
-    }
 
     .modal{
       display:none;
@@ -651,19 +610,6 @@
     }
     .mobilebar__inner .btn{flex:1}
     .mobilebar__inner .btn-secondary{flex:0 0 auto}
-    .mobilebar__cart{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-    }
-    .mobilebar__cart b{
-      background: rgba(15,23,42,.06);
-      border:1px solid rgba(15,23,42,.14);
-      border-radius: 999px;
-      padding: 4px 10px;
-      font-size: 12px;
-      color: rgba(15,23,42,.92);
-    }
     @media (max-width: 980px){
       .mobilebar{display:block}
       body{padding-bottom: 76px;}
@@ -684,19 +630,18 @@
     .quote p{margin:0; color: rgba(15,23,42,.92)}
     .quote .who{margin-top:8px; font-weight:950; color: var(--muted); font-size: 13px}
 
-    .kv{display:grid; gap:10px;}
-    .kv .row{display:flex; gap:12px; align-items:flex-start;}
-    .kv .k{min-width: 170px; font-weight: 950; color: rgba(15,23,42,.92);}
-    .kv .v{color: var(--muted);}
-
-    .simplebox{
-      border:1px solid rgba(15,23,42,.12);
-      border-radius: 16px;
-      background: rgba(255,255,255,.78);
-      box-shadow: 0 10px 24px rgba(15,23,42,.06);
-      padding: 14px 16px;
+    /* FAQ compact */
+    .faqcompact{display:grid; gap:10px; margin-top:0;}
+    .faqrow{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius: 14px;
+      background: rgba(255,255,255,.72);
+      padding: 12px 12px;
     }
+    .faqrow .q{font-weight:950; margin:0 0 6px}
+    .faqrow .a{margin:0; color:var(--muted)}
 
+    /* Team */
     .teamgrid{display:grid; gap:10px; margin-top:10px;}
     .teamitem{
       border:1px solid rgba(15,23,42,.10);
@@ -708,104 +653,42 @@
     .teamitem .role{color:var(--muted); font-size:13px; font-weight:800; margin-top:2px}
     .teamitem .langs{color: rgba(71,85,105,.92); font-size: 12px; margin-top:6px}
 
-    .faqcompact{display:grid; gap:10px; margin-top:0;}
-    .faqrow{
-      border:1px solid rgba(15,23,42,.10);
-      border-radius: 14px;
-      background: rgba(255,255,255,.72);
-      padding: 12px 12px;
-    }
-    .faqrow .q{font-weight:950; margin:0 0 6px}
-    .faqrow .a{margin:0; color:var(--muted)}
+    /* ===== CENÍK (pro prvňáka): 3 jednoduché karty + krátká pravidla ===== */
+    .pricecards{display:grid; grid-template-columns: repeat(3,1fr); gap:16px; margin-top:18px}
+    @media (max-width: 980px){ .pricecards{grid-template-columns:1fr} }
 
-    /* ===== CENÍK: tabulka (přehledně) ===== */
-    .tablewrap{
-      border:1px solid rgba(15,23,42,.12);
-      border-radius: 16px;
-      overflow:hidden;
-      background: rgba(255,255,255,.76);
-      box-shadow: 0 10px 24px rgba(15,23,42,.06);
-    }
-    .pricetable{
-      width:100%;
-      border-collapse: separate;
-      border-spacing:0;
-      font-size: 14px;
-    }
-    .pricetable thead th{
-      text-align:left;
-      padding: 14px 14px;
-      background: rgba(15,23,42,.04);
-      border-bottom: 1px solid rgba(15,23,42,.10);
+    .pricecard{display:flex; flex-direction:column; gap:10px; padding: 18px}
+    .pricecard h3{margin:0}
+    .pricebig{
       font-weight: 950;
-      color: rgba(15,23,42,.90);
-      vertical-align:bottom;
-    }
-    .pricetable thead th .pname{
-      display:flex; align-items:center; gap:10px;
-      font-size: 14px;
-    }
-    .pricetable thead th .pprice{
-      margin-top:6px;
-      font-size: 22px;
+      font-size: 30px;
       letter-spacing:-.02em;
+      margin: 0;
       color: var(--text);
-      font-weight: 950;
     }
-    .pricetable thead th small{
-      display:block;
-      margin-top:4px;
-      color: var(--muted);
-      font-weight: 800;
-      font-size: 12px;
-    }
-    .pricetable tbody th,
-    .pricetable tbody td{
-      padding: 12px 14px;
-      border-bottom: 1px solid rgba(15,23,42,.08);
-      vertical-align:top;
-    }
-    .pricetable tbody th{
-      width: 28%;
-      font-weight: 950;
-      color: rgba(15,23,42,.92);
-      background: rgba(255,255,255,.55);
-    }
-    .pricetable tbody td{
-      color: var(--muted);
-      font-weight: 800;
-    }
-    .pricetable tbody tr:last-child th,
-    .pricetable tbody tr:last-child td{border-bottom:0}
-    .pricetable td strong{color: var(--text); font-weight: 950;}
-    .pbadge{
+    .pillsmini{display:flex; flex-wrap:wrap; gap:8px}
+    .pillmini{
       display:inline-flex; align-items:center; gap:8px;
-      padding: 6px 10px;
-      border-radius:999px;
-      border:1px solid rgba(56,175,226,.28);
-      background: rgba(56,175,226,.12);
+      padding: 8px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(15,23,42,.12);
+      background: rgba(255,255,255,.76);
+      font-weight: 900;
+      font-size: 13px;
       color: rgba(15,23,42,.92);
+      box-shadow: 0 8px 18px rgba(15,23,42,.05);
+    }
+    .topbadge{
+      display:inline-flex; align-items:center; gap:8px;
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: rgba(56,175,226,.14);
+      border: 1px solid rgba(56,175,226,.28);
       font-weight: 950;
       font-size: 12px;
-      white-space:nowrap;
+      color: rgba(15,23,42,.90);
     }
-    .pnote{
-      display:block;
-      color: rgba(71,85,105,.92);
-      font-weight: 800;
-      font-size: 12px;
-      margin-top:6px;
-    }
-
-    @media (max-width: 980px){
-      .tablewrap{border-radius: 14px}
-      .pricetable{font-size: 13px}
-      .pricetable thead th .pprice{font-size: 18px}
-      .pricetable tbody th{width:auto}
-      /* Mobil: horizontální scroll místo lámání na milion řádků */
-      .tablewrap{overflow:auto}
-      .pricetable{min-width: 860px;}
-    }
+    .rulesbox{margin-top:16px}
   </style>
 </head>
 
@@ -969,22 +852,18 @@
             <p class="q">Od kolika let se dá hrát?</p>
             <p class="a">Nejmladší děti u nás hrály zhruba od 8 let s doprovodem rodičů. Scénáře upravíme na delší vzdálenost a u mladších volíme křehčí kuličky.</p>
           </div>
-
           <div class="faqrow">
             <p class="q">Jak se platí?</p>
             <p class="a">Platí se podle skutečné spotřeby. Po hře lze platit hotově nebo kartou. U firem je možná i platba převodem.</p>
           </div>
-
           <div class="faqrow">
             <p class="q">Co si vzít s sebou?</p>
             <p class="a">Vybavení půjčíme kompletně včetně oblečení. Doporučujeme hlavně kvalitní obuv (treková/sportovní). Hodí se pití, šátek a ručník.</p>
           </div>
-
           <div class="faqrow">
             <p class="q">Dá se barva vyprat?</p>
             <p class="a">Ano – barva je dobře pratelná a kuličky jsou ekologicky odbouratelné.</p>
           </div>
-
           <div class="faqrow">
             <p class="q">Bolí paintball?</p>
             <p class="a">Křehkost kuliček volíme podle počasí. S vhodným oblečením bývá bolestivost nízká. Doporučujeme zakrytí krku a případně ochrannou vestu.</p>
@@ -1050,33 +929,11 @@
             <h4>Co vás čeká</h4>
             <p>
               Jedinečný lesní terén v centru Ostravy: vzrostlé stromy, množství zátarasů, dřevěných budov,
-              dobývání kopce „CITADELA“ a další scénáře. Hrací plocha tvoří členitý terén s kopečky a zákopy,
-              rozdělený na několik hracích ploch.
-            </p>
-
-            <h4>Parametry</h4>
-            <div class="kv">
-              <div class="row"><div class="k">Rozloha</div><div class="v">cca 11 000 m²</div></div>
-              <div class="row"><div class="k">Kapacita</div><div class="v">až 200 hráčů</div></div>
-              <div class="row"><div class="k">Min. hrací vzdálenost</div><div class="v">12 m</div></div>
-              <div class="row"><div class="k">GPS</div><div class="v">49.82941, 18.22122</div></div>
-            </div>
-
-            <div class="divider"></div>
-
-            <h4>Zázemí</h4>
-            <p>
-              Zázemí pro hráče, možnost grilování nebo zajištění občerstvení a parkování u areálu.
+              dobývání kopce „CITADELA“ a další scénáře.
             </p>
 
             <div class="divider"></div>
-            <div class="links" style="display:flex; gap:10px; flex-wrap:wrap">
-              <a class="btn btn-outline" href="https://www.paintballelite.cz/wp-content/uploads/2024/05/video-output-77D36F36-9E44-412A-9DFD-CB763BEC8423.mp4" target="_blank" rel="noopener">
-                Navigace autem (video)
-              </a>
-            </div>
 
-            <div class="divider"></div>
             <div class="small">Správce hřiště: Ing. Jan Duda, tel. 732 273 560</div>
           </div>
         </div>
@@ -1105,36 +962,11 @@
 
             <h4>Co je to za areál</h4>
             <p>
-              Vojenský areál bývalé raketové základny: budovy s původním maskováním, členitý terén, dřevěné zátarasy,
-              podzemní garáže, bunkry, strážní věže, vstupy do podzemí a podzemní chodby.
-              K dispozici rozsáhlý lesní terén o rozloze cca 120 000 m² ohraničený 3 m betonovou zdí.
-            </p>
-
-            <h4>Důležitá informace</h4>
-            <p><strong>Objekt je chráněn psy.</strong></p>
-
-            <h4>Parametry</h4>
-            <div class="kv">
-              <div class="row"><div class="k">Rozloha</div><div class="v">cca 120 000 m²</div></div>
-              <div class="row"><div class="k">Kapacita</div><div class="v">cca 50 hráčů</div></div>
-              <div class="row"><div class="k">Min. hrací vzdálenost</div><div class="v">12 m</div></div>
-              <div class="row"><div class="k">GPS</div><div class="v">49.635528, 18.039760</div></div>
-            </div>
-
-            <div class="divider"></div>
-
-            <h4>Zázemí</h4>
-            <p>
-              Zastřešené zázemí pro hráče, možnost grilování nebo zajištění občerstvení a parkování uvnitř areálu.
+              Vojenský areál bývalé raketové základny – budovy, bunkry, lesní terén.
             </p>
 
             <div class="divider"></div>
-            <div class="links" style="display:flex; gap:10px; flex-wrap:wrap">
-              <a class="btn btn-outline" href="https://youtu.be/0quBSEYqvE0" target="_blank" rel="noopener">Prezentační video 1</a>
-              <a class="btn btn-outline" href="https://youtu.be/BHJVikLOVIs" target="_blank" rel="noopener">Prezentační video 2</a>
-            </div>
 
-            <div class="divider"></div>
             <div class="small">Správce hřiště: Ing. Jan Duda, tel. 732 273 560</div>
           </div>
         </div>
@@ -1144,119 +976,87 @@
   </section>
 
   <!-- =======================
-       CENÍK – TABULKOVĚ PŘEHLEDNĚ
+       CENÍK – ultra jednoduchý (pro prvňáka)
        ======================= -->
   <section class="section anchor" id="cenik">
     <div class="container">
       <div class="section-title">
         <div>
           <h2 class="h2">Ceník</h2>
-          <p class="lead">Vše důležité v jedné tabulce (balíčky + pravidla + občerstvení).</p>
+          <p class="lead">Vyberte balíček. Každý balíček obsahuje vybavení + instruktora + hry.</p>
         </div>
         <a class="btn btn-primary" href="#rezervace">Rezervace</a>
       </div>
 
-      <div class="card glass" style="margin-top:18px">
-        <div class="tablewrap">
-          <table class="pricetable" aria-label="Ceník balíčků">
-            <thead>
-              <tr>
-                <th>Balíček</th>
-                <th>
-                  <div class="pname">COMMANDO <span class="pbadge">TOP</span></div>
-                  <div class="pprice">990 Kč</div>
-                  <small>na osobu</small>
-                </th>
-                <th>
-                  <div class="pname">RAMBO</div>
-                  <div class="pprice">650 Kč</div>
-                  <small>na osobu</small>
-                </th>
-                <th>
-                  <div class="pname">STUDENT</div>
-                  <div class="pprice">390 Kč</div>
-                  <small>na osobu</small>
-                </th>
-              </tr>
-            </thead>
+      <div class="pricecards">
+        <article class="glass pricecard">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap">
+            <h3 class="h3">COMMANDO</h3>
+            <span class="topbadge">TOP</span>
+          </div>
+          <p class="pricebig">990 Kč <span class="small" style="font-weight:800">/ osoba</span></p>
 
-            <tbody>
-              <tr>
-                <th>Kuličky</th>
-                <td><strong>800 ks</strong></td>
-                <td><strong>500 ks</strong></td>
-                <td><strong>300 ks</strong></td>
-              </tr>
+          <div class="pillsmini">
+            <span class="pillmini">🎯 800 kuliček</span>
+            <span class="pillmini">⏱️ ~ 2 hod</span>
+            <span class="pillmini">👥 min. 8</span>
+          </div>
 
-              <tr>
-                <th>Délka hry</th>
-                <td>~ <strong>2 hod</strong></td>
-                <td>~ <strong>2 hod</strong></td>
-                <td>~ <strong>2 hod</strong></td>
-              </tr>
+          <ul class="list">
+            <li><span class="dot"></span><span>V ceně i <strong>maskáče</strong></span></li>
+            <li><span class="dot"></span><span>Vybavení: značkovač, maska, rukavice, tlak</span></li>
+            <li><span class="dot"></span><span>Instruktor + scénáře her</span></li>
+          </ul>
+        </article>
 
-              <tr>
-                <th>Vybavení v ceně</th>
-                <td>Značkovač, maska, rukavice, tlak <span class="pnote">+ maskáče v ceně</span></td>
-                <td>Značkovač, maska, rukavice, tlak</td>
-                <td>Značkovač, maska, rukavice, tlak</td>
-              </tr>
+        <article class="glass pricecard">
+          <h3 class="h3">RAMBO</h3>
+          <p class="pricebig">650 Kč <span class="small" style="font-weight:800">/ osoba</span></p>
 
-              <tr>
-                <th>Minimum hráčů</th>
-                <td><strong>8</strong></td>
-                <td><strong>15</strong></td>
-                <td><strong>20</strong> <span class="pnote">(do 18 let)</span></td>
-              </tr>
+          <div class="pillsmini">
+            <span class="pillmini">🎯 500 kuliček</span>
+            <span class="pillmini">⏱️ ~ 2 hod</span>
+            <span class="pillmini">👥 min. 15</span>
+          </div>
 
-              <tr>
-                <th>Další kuličky</th>
-                <td><strong>1 Kč / ks</strong></td>
-                <td><strong>1 Kč / ks</strong></td>
-                <td><strong>1 Kč / ks</strong></td>
-              </tr>
+          <ul class="list">
+            <li><span class="dot"></span><span>Vybavení: značkovač, maska, rukavice, tlak</span></li>
+            <li><span class="dot"></span><span>Instruktor + scénáře her</span></li>
+            <li><span class="dot"></span><span>Maskáče volitelně: <strong>100 Kč</strong></span></li>
+          </ul>
+        </article>
 
-              <tr>
-                <th>Speciální podmínky</th>
-                <td>—</td>
-                <td>—</td>
-                <td><strong>Po–Pá 8–14 h</strong></td>
-              </tr>
+        <article class="glass pricecard">
+          <h3 class="h3">STUDENT</h3>
+          <p class="pricebig">390 Kč <span class="small" style="font-weight:800">/ osoba</span></p>
 
-              <tr>
-                <th>V ceně je vždy</th>
-                <td colspan="3">
-                  Bezpečnostní školení, organizace her a vysvětlení scénářů, servis a čištění vybavení, doplňování plynu zdarma.
-                  Hraje se za každého počasí.
-                </td>
-              </tr>
+          <div class="pillsmini">
+            <span class="pillmini">🎯 300 kuliček</span>
+            <span class="pillmini">⏱️ ~ 2 hod</span>
+            <span class="pillmini">👥 min. 20</span>
+          </div>
 
-              <tr>
-                <th>Doplňky + platba</th>
-                <td colspan="3">
-                  Zapůjčení maskáčů (kombinéza) <strong>100 Kč</strong> (pokud nejsou v balíčku). Platba: <strong>karta / hotově / faktura</strong> (u firem).
-                </td>
-              </tr>
+          <ul class="list">
+            <li><span class="dot"></span><span>Pro skupiny do 18 let</span></li>
+            <li><span class="dot"></span><span>Termíny: <strong>Po–Pá 8–14 h</strong></span></li>
+            <li><span class="dot"></span><span>Vybavení + instruktor v ceně</span></li>
+          </ul>
+        </article>
+      </div>
 
-              <tr>
-                <th>Občerstvení (volitelné)</th>
-                <td colspan="3">
-                  Minimum objednávky: <strong>10 osob</strong>. Do rezervace napište typ + počet osob.
-                  <div class="pnote"><strong>Steak 150 g</strong> – 390 Kč / osoba • <strong>Steak 250 g</strong> – 490 Kč / osoba • <strong>Jiné</strong> – dle dohody</div>
-                </td>
-              </tr>
+      <div class="card glass rulesbox">
+        <h3 class="h3" style="margin-top:0">Jednoduchá pravidla</h3>
+        <ul class="list" style="margin-top:10px">
+          <li><span class="dot"></span><span>Další kuličky: <strong>1 Kč / ks</strong></span></li>
+          <li><span class="dot"></span><span>Platba: <strong>karta / hotově / faktura</strong></span></li>
+          <li><span class="dot"></span><span>Hraje se za každého počasí</span></li>
+          <li><span class="dot"></span><span>Občerstvení (volitelné): min. 10 osob – steak 150 g <strong>390 Kč</strong>, 250 g <strong>490 Kč</strong></span></li>
+          <li><span class="dot"></span><span>Do 18 let: souhlas zákonného zástupce (PDF)</span></li>
+        </ul>
 
-              <tr>
-                <th>Do 18 let</th>
-                <td colspan="3">
-                  Dle provozních řádů + souhlas zákonného zástupce (PDF).
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <div class="divider"></div>
 
-        <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap">
+        <div style="display:flex; gap:10px; flex-wrap:wrap">
           <a class="btn btn-primary" href="#rezervace">Rezervace</a>
           <a class="btn btn-outline" href="#poukazky">Poukázky</a>
         </div>
@@ -1477,7 +1277,6 @@
             Radniční 910/73<br>
             715 00 Ostrava, CZ
           </p>
-
           <div class="divider"></div>
           <p class="muted" style="margin:0">
             IČO: <strong>02862701</strong><br>
@@ -1593,15 +1392,18 @@
     </div>
   </footer>
 
-  <button class="btn btn-secondary cartbtn" type="button" id="openCartBtn">
-    🎁 Poukázky <b id="cartCount">0</b>
+  <button class="btn btn-secondary" type="button" id="openCartBtn"
+          style="position:fixed; right:16px; bottom:16px; z-index:70; box-shadow:var(--shadow); border:1px solid rgba(15,23,42,.14); background:rgba(255,255,255,.90); color:var(--text); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);">
+    🎁 Poukázky <b id="cartCount"
+      style="background: rgba(15,23,42,.06); border:1px solid rgba(15,23,42,.14); border-radius:999px; padding:4px 10px; font-size:12px; color: rgba(15,23,42,.92);">0</b>
   </button>
 
   <div class="mobilebar" aria-label="Rychlé akce (mobil)">
     <div class="mobilebar__inner">
       <a class="btn btn-primary" href="#rezervace">Rezervace</a>
-      <button class="btn btn-secondary mobilebar__cart" type="button" id="openCartMobile" aria-label="Otevřít košík">
-        🧾 <b id="cartCountMobile">0</b>
+      <button class="btn btn-secondary" type="button" id="openCartMobile" aria-label="Otevřít košík">
+        🧾 <b id="cartCountMobile"
+          style="background: rgba(15,23,42,.06); border:1px solid rgba(15,23,42,.14); border-radius:999px; padding:4px 10px; font-size:12px; color: rgba(15,23,42,.92);">0</b>
       </button>
     </div>
   </div>
@@ -1762,7 +1564,6 @@ Děkuji a přeji hezký den.
         }
 
         tabs.forEach((t, i) => t.tabIndex = (t.getAttribute("aria-selected") === "true" || i === 0) ? 0 : -1);
-
         tabs.forEach((t) => t.addEventListener("click", (e) => { e.preventDefault(); activate(t); }));
 
         tabs.forEach((t, idx) => t.addEventListener("keydown", (e) => {
