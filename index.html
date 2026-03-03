@@ -8,7 +8,6 @@
 
   <style>
     :root{
-      /* ====== LIGHT THEME (světlejší varianta stejného designu) ====== */
       --bg:#F3F6FB;
       --bg2:#E7EEF9;
 
@@ -52,9 +51,9 @@
     img{max-width:100%;display:block}
     a{color:inherit}
     .container{max-width:var(--max); margin:0 auto; padding:0 18px}
-    .section{padding:78px 0}
+    .section{padding:70px 0}
     .grid{display:grid; gap:16px}
-    .grid-2{grid-template-columns: 1.05fr .95fr}
+    .grid-2{grid-template-columns: 1fr 1fr}
     .grid-3{grid-template-columns: repeat(3,1fr)}
     .grid-4{grid-template-columns: repeat(4,1fr)}
 
@@ -65,15 +64,15 @@
       :root{ --header-offset: 92px; }
       .grid-2,.grid-3{grid-template-columns:1fr}
       .grid-4{grid-template-columns:1fr}
-      .section{padding:58px 0}
+      .section{padding:56px 0}
     }
     @media (max-width: 560px){
       .container{padding:0 14px}
-      .section{padding:52px 0}
+      .section{padding:50px 0}
     }
 
-    .h1{font-size: clamp(34px, 4.2vw, 58px); line-height:1.04; margin:0 0 12px; letter-spacing:-.03em}
-    .h2{font-size: clamp(22px, 2.6vw, 36px); margin:0 0 10px; letter-spacing:-.02em}
+    .h1{font-size: clamp(34px, 4.2vw, 56px); line-height:1.05; margin:0 0 12px; letter-spacing:-.03em}
+    .h2{font-size: clamp(22px, 2.6vw, 34px); margin:0 0 10px; letter-spacing:-.02em}
     .h3{font-size: 18px; margin:0 0 8px}
     .lead{font-size: 16px; color:var(--muted); margin:0}
     .muted{color:var(--muted)}
@@ -81,7 +80,7 @@
     .anchor{scroll-margin-top: var(--header-offset);}
 
     .glass{
-      background: rgba(255,255,255,.72);
+      background: rgba(255,255,255,.78);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow-soft);
@@ -89,6 +88,7 @@
       -webkit-backdrop-filter: blur(12px);
     }
     .divider{height:1px;background:var(--border);margin:14px 0}
+    .card{padding: 18px}
 
     .btn{
       display:inline-flex; align-items:center; justify-content:center; gap:10px;
@@ -110,14 +110,14 @@
     }
     .btn-primary:hover{filter:brightness(1.02)}
     .btn-secondary{
-      background: rgba(255,255,255,.86);
+      background: rgba(255,255,255,.92);
       color: var(--text);
       border-color: var(--border2);
       box-shadow: 0 10px 24px rgba(15,23,42,.06);
     }
     .btn-secondary:hover{border-color: rgba(15,23,42,.24)}
     .btn-outline{
-      background: rgba(255,255,255,.65);
+      background: rgba(255,255,255,.70);
       border-color: var(--border2);
       color: var(--text);
     }
@@ -132,13 +132,11 @@
       border-radius: 14px;
     }
 
-    .card{padding: 18px}
-
     .topbar{
       position: sticky;
       top:0;
       z-index: 60;
-      background: rgba(243,246,251,.78);
+      background: rgba(243,246,251,.82);
       border-bottom: 1px solid var(--border);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
@@ -204,7 +202,7 @@
 
     .burger{
       display:none;
-      background: rgba(255,255,255,.75);
+      background: rgba(255,255,255,.80);
       border:1px solid rgba(15,23,42,.16);
       color:var(--text);
       border-radius: 14px;
@@ -242,14 +240,14 @@
       display:flex;
       flex-direction:column;
       gap: 10px;
-      background: rgba(255,255,255,.86);
+      background: rgba(255,255,255,.90);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
     }
     .drawer__top{display:flex;align-items:center;justify-content:space-between;gap:10px}
     .drawer__close{
       border:1px solid rgba(15,23,42,.16);
-      background: rgba(255,255,255,.70);
+      background: rgba(255,255,255,.75);
       color: var(--text);
       border-radius: 12px;
       padding: 10px 12px;
@@ -281,7 +279,7 @@
     }
     .hero__inner{
       position:relative;
-      padding: 62px 0 58px;
+      padding: 60px 0 54px;
       display:grid;
       grid-template-columns: 1.1fr .9fr;
       gap: 18px;
@@ -311,7 +309,7 @@
       border-radius: 999px;
       padding: 9px 12px;
       border: 1px solid rgba(15,23,42,.12);
-      background: rgba(255,255,255,.66);
+      background: rgba(255,255,255,.70);
       font-weight: 900;
       font-size: 13px;
       color: rgba(15,23,42,.92);
@@ -323,7 +321,7 @@
     .kpi{
       border:1px solid rgba(15,23,42,.12);
       border-radius: 14px;
-      background: rgba(255,255,255,.70);
+      background: rgba(255,255,255,.72);
       padding: 12px;
       font-weight: 950;
       color: var(--text);
@@ -379,7 +377,7 @@
     .tag{
       position:absolute;
       left:12px; top:12px;
-      background: rgba(255,255,255,.72);
+      background: rgba(255,255,255,.75);
       border: 1px solid rgba(15,23,42,.14);
       border-radius: 999px;
       padding: 7px 10px;
@@ -403,7 +401,7 @@
       z-index: 70;
       box-shadow: var(--shadow);
       border: 1px solid rgba(15,23,42,.14);
-      background: rgba(255,255,255,.86);
+      background: rgba(255,255,255,.90);
       color: var(--text);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
@@ -439,7 +437,7 @@
       overflow:hidden;
       display:flex;
       flex-direction:column;
-      background: rgba(255,255,255,.86);
+      background: rgba(255,255,255,.90);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
     }
@@ -464,7 +462,7 @@
     }
     .close{
       border:1px solid rgba(15,23,42,.16);
-      background: rgba(255,255,255,.70);
+      background: rgba(255,255,255,.75);
       color: var(--text);
       border-radius: 12px;
       padding: 10px 12px;
@@ -480,7 +478,7 @@
       justify-content:space-between;
       align-items:flex-start;
       gap: 12px;
-      background: rgba(255,255,255,.72);
+      background: rgba(255,255,255,.76);
       box-shadow: 0 10px 24px rgba(15,23,42,.06);
     }
     @media (max-width: 560px){
@@ -498,7 +496,7 @@
       width:34px; height:34px;
       border-radius: 12px;
       border:1px solid rgba(15,23,42,.14);
-      background: rgba(255,255,255,.78);
+      background: rgba(255,255,255,.82);
       color: var(--text);
       font-weight: 950;
       cursor:pointer;
@@ -509,7 +507,7 @@
       text-align:center;
       border-radius: 12px;
       border:1px solid rgba(15,23,42,.14);
-      background: rgba(255,255,255,.85);
+      background: rgba(255,255,255,.90);
       color: var(--text);
     }
 
@@ -518,7 +516,7 @@
       padding: 12px 12px;
       border-radius: 12px;
       border:1px solid rgba(15,23,42,.14);
-      background: rgba(255,255,255,.86);
+      background: rgba(255,255,255,.90);
       color: var(--text);
       font: inherit;
       outline: none;
@@ -535,7 +533,7 @@
       padding:12px;
       border-radius:14px;
       border:1px solid rgba(15,23,42,.12);
-      background: rgba(255,255,255,.72);
+      background: rgba(255,255,255,.78);
       color: var(--muted);
       box-shadow: 0 10px 24px rgba(15,23,42,.06);
     }
@@ -568,7 +566,7 @@
     }
     .tabbtn{
       border:1px solid rgba(15,23,42,.14);
-      background: rgba(255,255,255,.72);
+      background: rgba(255,255,255,.76);
       color: rgba(15,23,42,.92);
       border-radius: 999px;
       padding: 10px 14px;
@@ -597,14 +595,14 @@
       border-radius: 16px;
       overflow:hidden;
       box-shadow: var(--shadow-soft);
-      background: rgba(255,255,255,.72);
+      background: rgba(255,255,255,.76);
       min-height: 260px;
     }
     .place-photo img{width:100%; height:100%; object-fit:cover}
     .place-details{
       border:1px solid rgba(15,23,42,.12);
       border-radius: 16px;
-      background: rgba(255,255,255,.72);
+      background: rgba(255,255,255,.76);
       box-shadow: var(--shadow-soft);
       padding: 14px;
     }
@@ -624,7 +622,7 @@
       padding: 8px 10px;
       border-radius: 999px;
       border:1px solid rgba(15,23,42,.12);
-      background: rgba(255,255,255,.72);
+      background: rgba(255,255,255,.76);
       font-weight: 900;
       font-size: 13px;
       color: rgba(15,23,42,.92);
@@ -687,7 +685,7 @@
       padding: 14px 16px;
       border-radius: 16px;
       border: 1px solid rgba(15,23,42,.12);
-      background: rgba(255,255,255,.72);
+      background: rgba(255,255,255,.76);
       box-shadow: 0 10px 24px rgba(15,23,42,.06);
     }
     .quote p{margin:0; color: rgba(15,23,42,.92)}
@@ -698,171 +696,47 @@
     .kv .k{min-width: 170px; font-weight: 950; color: rgba(15,23,42,.92);}
     .kv .v{color: var(--muted);}
 
-    /* ====== O NÁS (KOMPAKT) ====== */
-    .about-hero{padding: 18px;}
-    .about-hero .meta{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px;}
-    .about-chip{
-      display:inline-flex; gap:8px; align-items:center;
-      padding: 9px 12px; border-radius: 999px;
-      border:1px solid rgba(15,23,42,.12);
-      background: rgba(255,255,255,.72);
-      font-weight: 900; font-size: 13px;
-      color: rgba(15,23,42,.92);
-      box-shadow: 0 8px 18px rgba(15,23,42,.05);
-    }
-    .stats{
-      display:grid;
-      grid-template-columns: repeat(3,1fr);
-      gap:12px;
-      margin-top:12px;
-    }
-    @media (max-width: 980px){ .stats{grid-template-columns:1fr} }
-    .stat{
+    /* FAQ + TÝM */
+    .simplebox{
       border:1px solid rgba(15,23,42,.12);
       border-radius: 16px;
-      background: rgba(255,255,255,.72);
-      padding: 12px 14px;
+      background: rgba(255,255,255,.78);
       box-shadow: 0 10px 24px rgba(15,23,42,.06);
-    }
-    .stat b{display:block; font-size: 18px; letter-spacing:-.01em;}
-    .stat span{display:block; margin-top:4px; color: var(--muted); font-size: 13px; font-weight: 800;}
-
-    .about-types{
-      display:grid;
-      grid-template-columns: repeat(2,1fr);
-      gap:12px;
-      margin-top:12px;
-    }
-    @media (max-width: 980px){ .about-types{grid-template-columns:1fr} }
-
-    /* Kompaktní bloky vpravo */
-    .compact-stack{display:grid; gap:12px}
-    .compact-actions{display:flex; gap:10px; flex-wrap:wrap}
-
-    /* Accordion (kompakt) */
-    .accordion{
-      border:1px solid rgba(15,23,42,.12);
-      border-radius: 16px;
-      background: rgba(255,255,255,.72);
-      overflow:hidden;
-      box-shadow: 0 10px 24px rgba(15,23,42,.06);
-    }
-    .accordion details{
-      border-top:1px solid rgba(15,23,42,.10);
-      padding: 12px 14px;
-    }
-    .accordion details:first-child{border-top:0}
-    .accordion summary{
-      cursor:pointer;
-      font-weight: 950;
-      list-style:none;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      color: rgba(15,23,42,.96);
-    }
-    .accordion summary::-webkit-details-marker{display:none}
-    .accordion summary .chev{
-      width:30px;height:30px;
-      border-radius: 12px;
-      border:1px solid rgba(15,23,42,.14);
-      background: rgba(255,255,255,.70);
-      display:grid;place-items:center;
-      color: rgba(15,23,42,.92);
-      font-weight: 950;
-      flex:0 0 auto;
-    }
-    .accordion details[open] summary .chev{background: rgba(56,175,226,.16); border-color: rgba(56,175,226,.30)}
-    .accordion .content{margin-top:10px; color: var(--muted)}
-    .kv2{display:grid; gap:10px;}
-    .kv2 .row{display:grid; grid-template-columns: 160px 1fr; gap: 12px;}
-    @media (max-width: 560px){ .kv2 .row{grid-template-columns:1fr} }
-    .kv2 .k{font-weight: 950; color: rgba(15,23,42,.92);}
-    .kv2 .v{color: var(--muted);}
-
-    .stepper{display:grid; gap:10px;}
-    .step{
-      display:flex; gap:12px; align-items:flex-start;
-      padding: 12px 12px;
-      border-radius: 16px;
-      border: 1px solid rgba(15,23,42,.12);
-      background: rgba(255,255,255,.72);
-      box-shadow: 0 10px 24px rgba(15,23,42,.06);
-    }
-    .step .n{
-      width:34px;height:34px;
-      border-radius: 12px;
-      display:grid;place-items:center;
-      font-weight: 950;
-      color:#075985;
-      border:1px solid rgba(56,175,226,.35);
-      background: rgba(56,175,226,.14);
-      flex:0 0 auto;
-    }
-    .step .t{font-weight: 950; color: rgba(15,23,42,.95);}
-    .step .d{margin-top:3px; color: var(--muted); font-size: 14px;}
-
-    .team-grid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:10px;
-      margin-top:10px;
-    }
-    @media (max-width: 560px){ .team-grid{grid-template-columns:1fr} }
-    .person{
-      display:flex; gap:12px; align-items:flex-start;
-      padding: 12px 12px;
-      border-radius: 16px;
-      border: 1px solid rgba(15,23,42,.12);
-      background: rgba(255,255,255,.72);
-      box-shadow: 0 10px 24px rgba(15,23,42,.06);
-    }
-    .avatar{
-      width:40px;height:40px;
-      border-radius: 14px;
-      display:grid;place-items:center;
-      font-weight: 950;
-      color:#0f172a;
-      border:1px solid rgba(15,23,42,.14);
-      background:
-        radial-gradient(600px 220px at 10% 10%, rgba(56,175,226,.22), transparent 55%),
-        radial-gradient(520px 220px at 90% 0%, rgba(255,106,61,.16), transparent 55%),
-        rgba(255,255,255,.78);
-      flex:0 0 auto;
-      box-shadow: 0 10px 24px rgba(15,23,42,.06);
-    }
-    .person .role{color: var(--muted); font-size: 13px; font-weight: 800; margin-top:3px;}
-    .person .langs{color: rgba(71,85,105,.92); font-size: 12px; margin-top:6px;}
-
-    /* FAQ (bez rozklikávání) */
-    .faq-list{display:grid; gap:12px; margin-top:14px;}
-    .faq-item{
       padding: 14px 16px;
-      border-radius: 16px;
-      border: 1px solid rgba(15,23,42,.12);
+    }
+
+    .teamgrid{display:grid; gap:10px; margin-top:10px;}
+    .teamitem{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius: 14px;
       background: rgba(255,255,255,.72);
-      box-shadow: 0 10px 24px rgba(15,23,42,.06);
+      padding: 12px 12px;
     }
-    .faq-item h4{
-      margin:0 0 8px;
-      font-size: 15px;
-      letter-spacing:-.01em;
-      color: rgba(15,23,42,.96);
+    .teamitem .name{font-weight:950}
+    .teamitem .role{color:var(--muted); font-size:13px; font-weight:800; margin-top:2px}
+    .teamitem .langs{color: rgba(71,85,105,.92); font-size: 12px; margin-top:6px}
+
+    .faqcompact{display:grid; gap:10px; margin-top:0;}
+    .faqrow{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius: 14px;
+      background: rgba(255,255,255,.72);
+      padding: 12px 12px;
     }
-    .faq-item p{margin:0; color: var(--muted);}
+    .faqrow .q{font-weight:950; margin:0 0 6px}
+    .faqrow .a{margin:0; color:var(--muted)}
   </style>
 </head>
 
 <body>
-
   <div class="topbar">
     <div class="container">
       <div class="topbar__inner">
         <a class="brand" href="#uvod" aria-label="PaintballElite.cz">
           <img class="brand__logo"
                src="https://www.paintballelite.cz/wp-content/uploads/2021/02/logo_paintballelite_2019_3.png"
-               alt="PaintballElite.cz logo">
+               alt="PaintballElite.cz logo"
+               referrerpolicy="no-referrer">
         </a>
 
         <div class="topinfo" aria-label="Kontaktní údaje">
@@ -877,17 +751,20 @@
           <div class="navlinks" aria-label="Hlavní menu">
             <a href="#uvod">Úvod</a>
             <a href="#info">Info</a>
-            <a href="#reference">Reference</a>
-            <a href="#onas">O nás</a>
             <a href="#hriste">Hřiště</a>
             <a href="#cenik">Ceník</a>
             <a href="#poukazky">Poukázky</a>
             <a href="#rezervace">Rezervace</a>
+            
             <a href="#kontakt">Kontakt</a>
+            <a href="#tym">Náš tým</a>
           </div>
 
           <div class="navcta">
             <a class="btn btn-primary" href="#rezervace">Rezervace</a>
+            <a class="btn btn-outline"
+               href="https://photos.google.com/share/AF1QipNlAD_3AWvyHY_pRnyz8XTdPlWU8t3z9B2xnyzhYWKJYSCkFAKf2X9SEFlOQocBUg?key=MkJ5YkdBR3M2X05veFRoTGw0NHNEenJyNm41bGNB"
+               target="_blank" rel="noopener">📸 Galerie</a>
             <button class="burger" type="button" id="openDrawer" aria-label="Otevřít menu">MENU</button>
           </div>
         </div>
@@ -905,13 +782,14 @@
       <div class="drawer__links">
         <a href="#uvod" data-close>Úvod</a>
         <a href="#info" data-close>Info</a>
-        <a href="#reference" data-close>Reference</a>
-        <a href="#onas" data-close>O nás</a>
         <a href="#hriste" data-close>Hřiště</a>
         <a href="#cenik" data-close>Ceník</a>
         <a href="#poukazky" data-close>Poukázky</a>
         <a href="#rezervace" data-close>Rezervace</a>
+        <a href="https://photos.google.com/share/AF1QipNlAD_3AWvyHY_pRnyz8XTdPlWU8t3z9B2xnyzhYWKJYSCkFAKf2X9SEFlOQocBUg?key=MkJ5YkdBR3M2X05veFRoTGw0NHNEenJyNm41bGNB"
+           target="_blank" rel="noopener" data-close>📸 Galerie</a>
         <a href="#kontakt" data-close>Kontakt</a>
+        <a href="#tym" data-close>Náš tým</a>
       </div>
 
       <div class="divider"></div>
@@ -921,10 +799,6 @@
     </div>
   </div>
 
-  <!-- ====== ZBYTEK HTML+JS nechán 1:1 (beze změn) ====== -->
-  <!-- Pozn.: Z důvodu délky je zbytek identický s tím, co jsi poslal – pouze CSS nahoře je přepnuté na světlejší. -->
-
-  <!-- START původního obsahu (nezměněno) -->
   <main id="uvod" class="hero anchor">
     <div class="container">
       <div class="hero__inner">
@@ -997,308 +871,51 @@
     </div>
   </section>
 
-  <section class="section anchor" id="reference">
+  <section class="section anchor" id="faq">
     <div class="container">
       <div class="section-title">
         <div>
-          <h2 class="h2">Napsali o nás</h2>
-          <p class="lead">Krátké dojmy z akcí.</p>
+          <h2 class="h2">Nejčastější dotazy</h2>
+          <p class="lead">Rychlé odpovědi na to, co řeší lidé nejčastěji.</p>
         </div>
         <a class="btn btn-outline" href="#rezervace">Rezervace</a>
       </div>
 
-      <div class="grid grid-2" style="margin-top:18px">
-        <div class="quote">
-          <p>Akce se povedla, kolegové byli spokojení. Zázemí bylo připravené a líbilo se nám, že bylo víc variant her.</p>
-          <div class="who">J. F. – TIETO, Ostrava</div>
-        </div>
-
-        <div class="quote">
-          <p>Byl to překvapivě silný zážitek a velká zábava. Člověk se naučí nové věci a rád se vrátí znovu.</p>
-          <div class="who">Michal Drozd – Ostrava</div>
-        </div>
-
-        <div class="quote">
-          <p>Skvělé a zábavné hry, přátelský a zkušený personál a hřiště s mnoha herními možnostmi.</p>
-          <div class="who">Jana Macková – Ostrava</div>
-        </div>
-
-        <div class="quote">
-          <p>Před první hrou jsem měl obavy ze zásahů, ale rychle to přešlo. Díky trpělivé obsluze jsme si to fakt užili.</p>
-          <div class="who">Kamil Velebil – Ostrava</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section anchor" id="onas">
-    <div class="container">
-      <div class="grid grid-2" style="align-items:start">
-
-        <div>
-          <div class="card glass about-hero">
-            <h2 class="h2">O nás</h2>
-            <p class="lead">
-              Od roku 2003 organizujeme paintballové akce pro veřejnost i firmy. Máme koncesi na organizaci sportovních paintballových akcí
-              a výrobu paintballových kuliček. Používáme kuličky s ekologickou gelovou náplní a na větší akce máme vybavení až pro 100 hráčů.
-            </p>
-
-            <div class="meta">
-              <span class="about-chip">✅ Instruktoři + bezpečnost</span>
-              <span class="about-chip">✅ Scénáře pro nováčky i zkušené</span>
-              <span class="about-chip">✅ Akce pro školy, firmy, oslavy</span>
-            </div>
-
-            <div class="stats">
-              <div class="stat"><b>2003</b><span>od kdy fungujeme</span></div>
-              <div class="stat"><b>~ 2 hod</b><span>typická délka hry</span></div>
-              <div class="stat"><b>~ 10 her</b><span>běžně za akci</span></div>
-            </div>
+      <div class="card glass" style="margin-top:18px">
+        <div class="faqcompact">
+          <div class="faqrow">
+            <p class="q">Od kolika let se dá hrát?</p>
+            <p class="a">Nejmladší děti u nás hrály zhruba od 8 let s doprovodem rodičů. Scénáře upravíme na delší vzdálenost a u mladších volíme křehčí kuličky.</p>
           </div>
 
-          <div class="about-types">
-            <div class="card glass">
-              <h3 class="h3">Firemní akce – teambuilding</h3>
-              <p class="muted" style="margin:0">
-                Paintball přirozeně podporuje spolupráci a komunikaci v týmu. Umíme připravit i turnaj, tempo hry drží instruktor.
-                Lze domluvit občerstvení i doplňkový program.
-              </p>
-            </div>
+          <div class="faqrow">
+            <p class="q">Jak se platí?</p>
+            <p class="a">Platí se podle skutečné spotřeby. Po hře lze platit hotově nebo kartou. U firem je možná i platba převodem.</p>
+          </div>
 
-            <div class="card glass">
-              <h3 class="h3">Školy / junioři</h3>
-              <p class="muted" style="margin:0">
-                Scénáře upravíme pro mladší hráče i školní kolektivy. Důraz na bezpečnost, srozumitelná pravidla a zábavu pro všechny.
-              </p>
-            </div>
+          <div class="faqrow">
+            <p class="q">Co si vzít s sebou?</p>
+            <p class="a">Vybavení půjčíme kompletně včetně oblečení. Doporučujeme hlavně kvalitní obuv (treková/sportovní). Hodí se pití, šátek a ručník.</p>
+          </div>
 
-            <div class="card glass">
-              <h3 class="h3">Rodinné oslavy</h3>
-              <p class="muted" style="margin:0">
-                Narozeniny nebo výročí – nastavíme hry tak, aby si je užili nováčci i zkušenější, bez zbytečné frustrace.
-              </p>
-            </div>
+          <div class="faqrow">
+            <p class="q">Dá se barva vyprat?</p>
+            <p class="a">Ano – barva je dobře pratelná a kuličky jsou ekologicky odbouratelné.</p>
+          </div>
 
-            <div class="card glass">
-              <h3 class="h3">„Zapíjení svobody“</h3>
-              <p class="muted" style="margin:0">
-                Oblíbený formát pro partu a ženicha – svižné scénáře, soutěžní režimy a jasná pravidla.
-              </p>
-            </div>
+          <div class="faqrow">
+            <p class="q">Bolí paintball?</p>
+            <p class="a">Křehkost kuliček volíme podle počasí. S vhodným oblečením bývá bolestivost nízká. Doporučujeme zakrytí krku a případně ochrannou vestu.</p>
           </div>
         </div>
 
-        <div class="compact-stack">
-          <aside class="card glass">
-            <h3 class="h3">Rychlý kontakt</h3>
-            <p class="muted" style="margin:0">
-              Telefon: <a href="tel:+420732273560" style="font-weight:900; color:var(--brand); text-decoration:none;">+420 732 273 560</a><br>
-              E-mail: <a href="mailto:info@paintballelite.cz" style="font-weight:900; color:var(--brand); text-decoration:none;">info@paintballelite.cz</a>
-            </p>
+        <div class="divider"></div>
 
-            <div class="divider"></div>
-
-            <div class="compact-actions">
-              <a class="btn btn-primary" href="#rezervace">Rezervace</a>
-              <a class="btn btn-outline" href="#poukazky">Poukázky</a>
-            </div>
-
-            <div class="divider"></div>
-
-            <p class="small" style="margin:0">
-              kancelář:<br>
-              <strong>Duing Distribution s.r.o.</strong><br>
-              Radniční 910/73, 715 00 Ostrava, CZ
-            </p>
-
-            <div class="divider"></div>
-
-            <div class="hint">
-              <strong>Tip:</strong> Do rezervace napište počet hráčů, datum, čas, lokalitu a balíček.
-            </div>
-          </aside>
-
-          <div class="accordion">
-            <details open>
-              <summary>
-                <span>Základní fakta</span>
-                <span class="chev">+</span>
-              </summary>
-              <div class="content">
-                <div class="kv2" style="margin-top:10px">
-                  <div class="row">
-                    <div class="k">Oprávnění</div>
-                    <div class="v">Koncesní živnost – organizace akcí + výroba paintballových kuliček.</div>
-                  </div>
-                  <div class="row">
-                    <div class="k">Vybavení</div>
-                    <div class="v">Kompletní vybavení až pro 100 hráčů.</div>
-                  </div>
-                  <div class="row">
-                    <div class="k">Cíl akcí</div>
-                    <div class="v">Pobavit, stmelit kolektiv, podpořit týmovou spolupráci a pohyb venku.</div>
-                  </div>
-                  <div class="row">
-                    <div class="k">Bezpečnost</div>
-                    <div class="v">Povinné masky v ohroženém prostoru, kontrola vybavení, dohled instruktora.</div>
-                  </div>
-                </div>
-              </div>
-            </details>
-
-            <details>
-              <summary>
-                <span>Průběh akce</span>
-                <span class="chev">+</span>
-              </summary>
-              <div class="content">
-                <div class="stepper">
-                  <div class="step">
-                    <div class="n">1</div>
-                    <div>
-                      <div class="t">Rezervace termínu</div>
-                      <div class="d">Domluvíme datum, čas, lokalitu, počet hráčů a balíček.</div>
-                    </div>
-                  </div>
-
-                  <div class="step">
-                    <div class="n">2</div>
-                    <div>
-                      <div class="t">Instruktáž</div>
-                      <div class="d">Bezpečnost + ovládání vybavení, rozdělení do týmů a pravidla.</div>
-                    </div>
-                  </div>
-
-                  <div class="step">
-                    <div class="n">3</div>
-                    <div>
-                      <div class="t">Hry a scénáře</div>
-                      <div class="d">Před každou hrou vysvětlíme scénář a řídíme průběh.</div>
-                    </div>
-                  </div>
-
-                  <div class="step">
-                    <div class="n">4</div>
-                    <div>
-                      <div class="t">Vyhodnocení a doplňky</div>
-                      <div class="d">Kdo chce, přidáme další hry / občerstvení podle rezervace.</div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="divider"></div>
-                <p class="small" style="margin:0">
-                  Do 18 let je potřeba souhlas zákonného zástupce (PDF máš v sekci Rezervace).
-                </p>
-              </div>
-            </details>
-
-            <details>
-              <summary>
-                <span>Náš tým – instruktoři</span>
-                <span class="chev">+</span>
-              </summary>
-              <div class="content">
-                <p class="small" style="margin:0 0 10px">
-                  Organizace, scénáře a dohled po celou dobu – podle typu akce přizpůsobíme tempo i náročnost.
-                </p>
-
-                <div class="team-grid">
-                  <div class="person">
-                    <div class="avatar">JD</div>
-                    <div>
-                      <div style="font-weight:950">Ing. Jan Duda</div>
-                      <div class="role">Rezervace termínů, firemní turnaje a větší akce</div>
-                      <div class="langs">CZ / EN / DE / PL</div>
-                    </div>
-                  </div>
-
-                  <div class="person">
-                    <div class="avatar">JJ</div>
-                    <div>
-                      <div style="font-weight:950">Ing. Jiří Duda</div>
-                      <div class="role">Organizace akcí, školy a firemní akce</div>
-                      <div class="langs">CZ / PL / RU</div>
-                    </div>
-                  </div>
-
-                  <div class="person">
-                    <div class="avatar">VD</div>
-                    <div>
-                      <div style="font-weight:950">Mgr. Věra Dudová</div>
-                      <div class="role">Catering a doplňkové sportovní atrakce</div>
-                      <div class="langs">CZ / PL / EN</div>
-                    </div>
-                  </div>
-
-                  <div class="person">
-                    <div class="avatar">PL</div>
-                    <div>
-                      <div style="font-weight:950">Petr Logan</div>
-                      <div class="role">Instruktor, scénáře her, profesionální hasič</div>
-                      <div class="langs">CZ / EN</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </details>
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- FAQ bez rozklikávání, vše pod sebe -->
-      <div style="margin-top:18px">
-        <div class="section-title">
-          <div>
-            <h3 class="h2" style="margin:0">Nejčastější dotazy</h3>
-            <p class="lead">Rychlé odpovědi na to, co řeší lidé nejčastěji.</p>
-          </div>
-          <a class="btn btn-outline" href="#rezervace">Rezervace</a>
-        </div>
-
-        <div class="faq-list">
-          <div class="faq-item">
-            <h4>Od kolika let se dá hrát?</h4>
-            <p>
-              Nejmladší děti u nás hrály zhruba od 8 let s doprovodem rodičů. Scénáře upravujeme tak,
-              aby se hrálo na delší vzdálenost, a u mladších volíme křehčí kuličky.
-            </p>
-          </div>
-
-          <div class="faq-item">
-            <h4>Jak se platí?</h4>
-            <p>
-              Platí se podle skutečné spotřeby. Po hře lze platit hotově nebo kartou. U firem je možná i platba převodem.
-            </p>
-          </div>
-
-          <div class="faq-item">
-            <h4>Co si vzít s sebou?</h4>
-            <p>
-              Vybavení půjčíme kompletně včetně oblečení. Doporučujeme hlavně kvalitní obuv (treková/sportovní).
-              Hodí se pití, šátek a ručník.
-            </p>
-          </div>
-
-          <div class="faq-item">
-            <h4>Dá se barva vyprat?</h4>
-            <p>
-              Ano – barva je dobře pratelná a kuličky jsou ekologicky odbouratelné.
-            </p>
-          </div>
-
-          <div class="faq-item">
-            <h4>Bolí paintball?</h4>
-            <p>
-              Křehkost kuliček volíme podle počasí. Bolestivost nelze garantovat u každého zásahu,
-              ale s vhodným oblečením bývá nízká. Doporučujeme zakrytí krku a případně ochrannou vestu.
-            </p>
-          </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap">
+          <a class="btn btn-primary" href="#rezervace">Rezervace</a>
+          <a class="btn btn-outline" href="#cenik">Ceník</a>
         </div>
       </div>
-
     </div>
   </section>
 
@@ -1325,7 +942,7 @@
         <div class="place-head" style="margin-top:16px">
           <div class="place-photo">
             <img src="https://www.paintballelite.cz/wp-content/uploads/2023/04/VIETCONG_mapa2023l2-845x1024.png"
-                 alt="VIETCONG – mapa hřiště" loading="lazy">
+                 alt="VIETCONG – mapa hřiště" loading="lazy" referrerpolicy="no-referrer">
           </div>
 
           <div class="place-details">
@@ -1375,9 +992,6 @@
               <a class="btn btn-outline" href="https://www.paintballelite.cz/wp-content/uploads/2024/05/video-output-77D36F36-9E44-412A-9DFD-CB763BEC8423.mp4" target="_blank" rel="noopener">
                 Navigace autem (video)
               </a>
-              <a class="btn btn-outline" href="https://photos.app.goo.gl/RV2XjwngwuyhXwhLA" target="_blank" rel="noopener">
-                Galerie
-              </a>
             </div>
 
             <div class="divider"></div>
@@ -1390,7 +1004,7 @@
         <div class="place-head" style="margin-top:16px">
           <div class="place-photo">
             <img src="https://www.paintballelite.cz/wp-content/uploads/2021/02/lasvegas_gal-300x225.jpg"
-                 alt="LAS VEGAS – foto hřiště" loading="lazy">
+                 alt="LAS VEGAS – foto hřiště" loading="lazy" referrerpolicy="no-referrer">
           </div>
 
           <div class="place-details">
@@ -1452,7 +1066,7 @@
       <div class="section-title">
         <div>
           <h2 class="h2">Ceník</h2>
-          <p class="lead">Balíčky + podmínky (minimální počet hráčů, doplatky kuliček, půjčovné…)</p>
+          <p class="lead">3 balíčky + vše důležité přehledně v jednom souhrnu.</p>
         </div>
         <a class="btn btn-primary" href="#rezervace">Rezervace</a>
       </div>
@@ -1499,58 +1113,61 @@
         </article>
       </div>
 
-      <div class="grid grid-2" style="margin-top:16px; align-items:start">
-        <div class="card glass">
-          <h3 class="h3">Nabízíme (v ceně tarifu)</h3>
-          <ul class="list">
-            <li><span class="dot"></span><span>Bezpečnostní školení, servis a údržba vybavení</span></li>
-            <li><span class="dot"></span><span>Čištění masek a značkovačů</span></li>
-            <li><span class="dot"></span><span>Organizace her a vysvětlení scénářů</span></li>
-            <li><span class="dot"></span><span>Doplňování stlačeného plynu do zbraní zdarma</span></li>
-            <li><span class="dot"></span><span>Hraje se za každého počasí</span></li>
-            <li><span class="dot"></span><span>Hřiště jsou dost velká i pro více skupin hrajících odděleně</span></li>
-          </ul>
-        </div>
+      <div class="card glass" style="margin-top:16px">
+        <div class="grid grid-2" style="gap:16px; align-items:start">
+          <div>
+            <h3 class="h3" style="margin-top:0">V ceně + doplňky</h3>
+            <ul class="list">
+              <li><span class="dot"></span><span>Bezpečnostní školení, organizace her a vysvětlení scénářů</span></li>
+              <li><span class="dot"></span><span>Servis, údržba a čištění masek a značkovačů</span></li>
+              <li><span class="dot"></span><span>Doplňování stlačeného plynu do zbraní zdarma</span></li>
+              <li><span class="dot"></span><span>Hřiště jsou dost velká i pro více skupin (odděleně)</span></li>
+              <li><span class="dot"></span><span>Hraje se za každého počasí</span></li>
+            </ul>
 
-        <div class="card glass">
-          <h3 class="h3">Firemní akce, doplňky, platby</h3>
-          <ul class="list">
-            <li><span class="dot"></span><span>Pro firemní akce lze zajistit catering, občerstvení a doplňkový program</span></li>
-            <li><span class="dot"></span><span>Zapůjčení maskáčů (kombinéza): <strong>100 Kč</strong></span></li>
-            <li><span class="dot"></span><span>Platba: <strong>karta / faktura / hotově</strong></span></li>
-          </ul>
+            <div class="divider"></div>
+
+            <ul class="list" style="margin-top:0">
+              <li><span class="dot"></span><span>Zapůjčení maskáčů (kombinéza): <strong>100 Kč</strong></span></li>
+              <li><span class="dot"></span><span>Platba: <strong>karta / faktura / hotově</strong></span></li>
+              <li><span class="dot"></span><span>Pro firmy lze zajistit catering, občerstvení a doplňkový program</span></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="h3" style="margin-top:0">Podmínky + občerstvení</h3>
+            <ul class="list">
+              <li><span class="dot"></span><span>Rezervace dopředu doporučená (víkendy se rychle plní).</span></li>
+              <li><span class="dot"></span><span>Do 18 let: dle pravidel + souhlas zákonného zástupce (PDF).</span></li>
+              <li><span class="dot"></span><span>Hraje se za každého počasí (v zimě dle počasí).</span></li>
+            </ul>
+
+            <div class="divider"></div>
+
+            <div class="simplebox" style="margin:0">
+              <div style="font-weight:950; margin-bottom:6px">Občerstvení (volitelné)</div>
+              <p class="muted" style="margin:0">
+                Občerstvení může zahrnovat steak 150 g nebo 250 g (kuřecí/vepřový), chléb, zeleninu a nápoje.
+                Minimum pro objednání je 10 osob. Jídla jsou připravena dopředu a na místě se jen servírují.
+              </p>
+              <div class="divider"></div>
+              <ul class="list" style="margin-top:0">
+                <li><span class="dot"></span><span><strong>Steak 150 g</strong> – 390 Kč / osoba</span></li>
+                <li><span class="dot"></span><span><strong>Steak 250 g</strong> – 490 Kč / osoba</span></li>
+                <li><span class="dot"></span><span><strong>Jiné občerstvení</strong> – dle dohody</span></li>
+              </ul>
+              <div class="divider"></div>
+              <div class="hint" style="margin:0">Do rezervace napište „občerstvení: steak 150 g / 250 g / dle dohody“ + počet osob.</div>
+            </div>
+
+            <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap">
+              <a class="btn btn-primary" href="#rezervace">Rezervace</a>
+              <a class="btn btn-outline" href="#poukazky">Poukázky</a>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="grid grid-2" style="margin-top:16px; align-items:start">
-        <div class="card glass">
-          <h3 class="h3">Doplňující podmínky</h3>
-          <ul class="list">
-            <li><span class="dot"></span><span>Hrajeme za každého počasí (v zimě dle počasí).</span></li>
-            <li><span class="dot"></span><span>Rezervace dopředu doporučená (víkendy se plní).</span></li>
-            <li><span class="dot"></span><span>Do 18 let: dle pravidel + souhlas zákonného zástupce (PDF).</span></li>
-          </ul>
-        </div>
-
-        <div class="card glass">
-          <h3 class="h3">Občerstvení (volitelné)</h3>
-
-          <p class="muted" style="margin:0">
-            Občerstvení může zahrnovat steak 150 g nebo 250 g (kuřecí/vepřový), chléb, zeleninu a nápoje
-            (nealko pivo, Radegast lahvové, Coca-Cola, minerálky). Minimum pro objednání je 10 osob.
-            Jídla jsou připravena dopředu a na místě se jen servírují.
-          </p>
-          <div class="divider"></div>
-
-          <ul class="list">
-            <li><span class="dot"></span><span><strong>Steak 150 g</strong> – 390 Kč / osoba</span></li>
-            <li><span class="dot"></span><span><strong>Steak 250 g</strong> – 490 Kč / osoba</span></li>
-            <li><span class="dot"></span><span><strong>Jiné občerstvení</strong> – dle dohody</span></li>
-          </ul>
-          <div class="divider"></div>
-          <div class="hint">Do rezervace napište „občerstvení: steak 150 g / 250 g / dle dohody“ + počet osob.</div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -1568,7 +1185,7 @@
         <article class="card glass product-card">
           <div class="product-thumb">
             <span class="tag">Poukázka</span>
-            <img src="https://www.paintballelite.cz/wp-content/uploads/2022/02/pouka_str.gif" alt="Poukázka na paintball" loading="lazy">
+            <img src="https://www.paintballelite.cz/wp-content/uploads/2022/02/pouka_str.gif" alt="Poukázka na paintball" loading="lazy" referrerpolicy="no-referrer">
           </div>
           <div class="prod-meta">
             <h3 class="h3">Poukázka – balíček COMMANDO</h3>
@@ -1584,7 +1201,7 @@
         <article class="card glass product-card">
           <div class="product-thumb">
             <span class="tag">Poukázka</span>
-            <img src="https://www.paintballelite.cz/wp-content/uploads/2022/02/pouka_str.gif" alt="Poukázka na paintball" loading="lazy">
+            <img src="https://www.paintballelite.cz/wp-content/uploads/2022/02/pouka_str.gif" alt="Poukázka na paintball" loading="lazy" referrerpolicy="no-referrer">
           </div>
           <div class="prod-meta">
             <h3 class="h3">Poukázka – balíček RAMBO</h3>
@@ -1600,7 +1217,7 @@
         <article class="card glass product-card">
           <div class="product-thumb">
             <span class="tag">Poukázka</span>
-            <img src="https://www.paintballelite.cz/wp-content/uploads/2022/02/pouka_str.gif" alt="Poukázka na paintball" loading="lazy">
+            <img src="https://www.paintballelite.cz/wp-content/uploads/2022/02/pouka_str.gif" alt="Poukázka na paintball" loading="lazy" referrerpolicy="no-referrer">
           </div>
           <div class="prod-meta">
             <h3 class="h3">Poukázka – libovolná částka</h3>
@@ -1798,11 +1415,88 @@
     </div>
   </section>
 
+  <section class="section anchor" id="tym">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <h2 class="h2">Náš tým – instruktoři</h2>
+          <p class="lead">Organizace, scénáře a dohled po celou dobu – tempo i náročnost přizpůsobíme skupině.</p>
+        </div>
+        <a class="btn btn-primary" href="#rezervace">Rezervace</a>
+      </div>
+
+      <div class="card glass" style="margin-top:18px">
+        <div class="teamgrid">
+          <div class="teamitem">
+            <div class="name">Ing. Jan Duda</div>
+            <div class="role">Rezervace termínů, firemní turnaje a větší akce</div>
+            <div class="langs">CZ / EN / DE / PL</div>
+          </div>
+
+          <div class="teamitem">
+            <div class="name">Ing. Jiří Duda</div>
+            <div class="role">Organizace akcí, školy a firemní akce</div>
+            <div class="langs">CZ / PL / RU</div>
+          </div>
+
+          <div class="teamitem">
+            <div class="name">Mgr. Věra Dudová</div>
+            <div class="role">Catering a doplňkové sportovní atrakce</div>
+            <div class="langs">CZ / PL / EN</div>
+          </div>
+
+          <div class="teamitem">
+            <div class="name">Petr Logan</div>
+            <div class="role">Instruktor, scénáře her, profesionální hasič</div>
+            <div class="langs">CZ / EN</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFERENCE – ÚPLNĚ DOLE (před patičkou) -->
+  <section class="section anchor" id="reference">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <h2 class="h2">Napsali o nás</h2>
+          <p class="lead">Krátké dojmy z akcí.</p>
+        </div>
+        <a class="btn btn-outline" href="#rezervace">Rezervace</a>
+      </div>
+
+      <div class="grid grid-2" style="margin-top:18px">
+        <div class="quote">
+          <p>Akce se povedla, kolegové byli spokojení. Zázemí bylo připravené a líbilo se nám, že bylo víc variant her.</p>
+          <div class="who">J. F. – TIETO, Ostrava</div>
+        </div>
+
+        <div class="quote">
+          <p>Byl to překvapivě silný zážitek a velká zábava. Člověk se naučí nové věci a rád se vrátí znovu.</p>
+          <div class="who">Michal Drozd – Ostrava</div>
+        </div>
+
+        <div class="quote">
+          <p>Skvělé a zábavné hry, přátelský a zkušený personál a hřiště s mnoha herními možnostmi.</p>
+          <div class="who">Jana Macková – Ostrava</div>
+        </div>
+
+        <div class="quote">
+          <p>Před první hrou jsem měl obavy ze zásahů, ale rychle to přešlo. Díky trpělivé obsluze jsme si to fakt užili.</p>
+          <div class="who">Kamil Velebil – Ostrava</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer class="footer">
     <div class="container">
       <div class="footer__bottom" style="margin-top:0; padding-top:0; border-top:0">
         <div>© <span id="year"></span> PaintballElite.cz – Všechna práva vyhrazena</div>
-        <div><a href="#uvod">Zpět na začátek ↑</a></div>
+        <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center">
+          <a href="#uvod">Zpět na začátek ↑</a>
+        </div>
       </div>
     </div>
   </footer>
@@ -2223,13 +1917,6 @@ Děkuji.
       });
 
       renderCart();
-
-      document.querySelectorAll(".accordion details").forEach(d => {
-        const chev = d.querySelector("summary .chev");
-        const sync = () => { if(chev) chev.textContent = d.open ? "−" : "+"; };
-        sync();
-        d.addEventListener("toggle", sync);
-      });
     })();
   </script>
 </body>
