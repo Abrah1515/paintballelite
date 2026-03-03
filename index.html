@@ -22,7 +22,6 @@
 
       --brand:#38AFE2;
       --brand2:#22A6DF;
-      --accent:#FF6A3D;
 
       --shadow: 0 24px 60px rgba(15,23,42,.14);
       --shadow-soft: 0 14px 40px rgba(15,23,42,.10);
@@ -105,13 +104,13 @@
     .btn-secondary{
       background: rgba(255,255,255,.92);
       color: var(--text);
-      border-color: var(--border2);
+      border: 1px solid rgba(15,23,42,.16);
       box-shadow: 0 10px 24px rgba(15,23,42,.06);
     }
     .btn-secondary:hover{border-color: rgba(15,23,42,.24)}
     .btn-outline{
       background: rgba(255,255,255,.70);
-      border-color: var(--border2);
+      border: 1px solid rgba(15,23,42,.16);
       color: var(--text);
     }
     .btn-outline:hover{border-color: rgba(56,175,226,.45)}
@@ -130,7 +129,7 @@
       top:0;
       z-index: 60;
       background: rgba(243,246,251,.82);
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid rgba(15,23,42,.10);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
     }
@@ -214,7 +213,7 @@
       .brand__logo{width: 150px; height: 40px}
       .nav{padding: 8px 0}
 
-      .navcta .btn-primary{display:none;} /* ← tady se schová horní Rezervace na mobilu */
+      .navcta .btn-primary{display:none;}
     }
 
     .drawer{
@@ -617,13 +616,35 @@
     @media (max-width: 980px){
       .mobilebar{display:block}
       body{padding-bottom: 76px;}
-      #openCartBtn{display:none;} /* plovoucí košík schovat na mobilu */
+      #openCartBtn{display:none;}
     }
 
-    /* ===== CENÍK (jednoduše): 3 karty + krátká pravidla ===== */
+    /* FAQ compact */
+    .faqcompact{display:grid; gap:10px; margin-top:0;}
+    .faqrow{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius: 14px;
+      background: rgba(255,255,255,.72);
+      padding: 12px 12px;
+    }
+    .faqrow .q{font-weight:950; margin:0 0 6px}
+    .faqrow .a{margin:0; color:var(--muted)}
+
+    /* Team */
+    .teamgrid{display:grid; gap:10px; margin-top:10px;}
+    .teamitem{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius: 14px;
+      background: rgba(255,255,255,.72);
+      padding: 12px 12px;
+    }
+    .teamitem .name{font-weight:950}
+    .teamitem .role{color:var(--muted); font-size:13px; font-weight:800; margin-top:2px}
+    .teamitem .langs{color: rgba(71,85,105,.92); font-size: 12px; margin-top:6px}
+
+    /* Ceník */
     .pricecards{display:grid; grid-template-columns: repeat(3,1fr); gap:16px; margin-top:18px}
     @media (max-width: 980px){ .pricecards{grid-template-columns:1fr} }
-
     .pricecard{display:flex; flex-direction:column; gap:10px; padding: 18px}
     .pricecard h3{margin:0}
     .pricebig{
@@ -726,7 +747,6 @@
       </div>
 
       <div class="divider"></div>
-      <!-- Mobil: žádné tlačítko Rezervace v menu (rezervace je jen dole v mobilebar) -->
       <a class="btn btn-outline" href="tel:+420732273560">Zavolat</a>
       <a class="btn btn-outline" href="mailto:info@paintballelite.cz">Napsat e-mail</a>
     </div>
@@ -1070,7 +1090,6 @@
             Do 18 let je potřeba souhlas zákonného zástupce (PDF).
           </div>
         </div>
-        <!-- odstraněno tlačítko Rezervace v obsahu -->
       </div>
 
       <div class="grid grid-2" style="margin-top:18px; align-items:start">
@@ -1224,6 +1243,7 @@
     </div>
   </section>
 
+  <!-- ✅ Náš tým: původní verze (jména + role + jazyky) -->
   <section class="section anchor" id="tym">
     <div class="container">
       <div class="section-title">
@@ -1274,14 +1294,14 @@
     </div>
   </footer>
 
-  <!-- PC: plovoucí košík (ok), mobil: schován přes CSS -->
+  <!-- PC: plovoucí košík, mobil: schovaný přes CSS -->
   <button class="btn btn-secondary" type="button" id="openCartBtn"
           style="position:fixed; right:16px; bottom:16px; z-index:70; box-shadow:var(--shadow); border:1px solid rgba(15,23,42,.14); background:rgba(255,255,255,.90); color:var(--text); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);">
     🎁 Poukázky <b id="cartCount"
       style="background: rgba(15,23,42,.06); border:1px solid rgba(15,23,42,.14); border-radius:999px; padding:4px 10px; font-size:12px; color: rgba(15,23,42,.92);">0</b>
   </button>
 
-  <!-- Mobil: jediné tlačítko Rezervace -->
+  <!-- Mobil: jediné tlačítko Rezervace dole -->
   <div class="mobilebar" aria-label="Rychlé akce (mobil)">
     <div class="mobilebar__inner">
       <a class="btn btn-primary" href="#rezervace">Rezervace</a>
@@ -1439,32 +1459,11 @@ Děkuji a přeji hezký den.
 
         function activate(tab){
           const targetId = tab.dataset.panel;
-          tabs.forEach(t => {
-            const on = t === tab;
-            t.setAttribute("aria-selected", on ? "true" : "false");
-            t.tabIndex = on ? 0 : -1;
-          });
+          tabs.forEach(t => t.setAttribute("aria-selected", t === tab ? "true" : "false"));
           panels.forEach(p => p.classList.toggle("active", p.id === targetId));
         }
 
-        tabs.forEach((t, i) => t.tabIndex = (t.getAttribute("aria-selected") === "true" || i === 0) ? 0 : -1);
         tabs.forEach((t) => t.addEventListener("click", (e) => { e.preventDefault(); activate(t); }));
-
-        tabs.forEach((t, idx) => t.addEventListener("keydown", (e) => {
-          const key = e.key;
-          if(key === "ArrowRight" || key === "ArrowDown"){
-            e.preventDefault();
-            const next = tabs[(idx + 1) % tabs.length];
-            next.focus(); activate(next);
-          } else if(key === "ArrowLeft" || key === "ArrowUp"){
-            e.preventDefault();
-            const prev = tabs[(idx - 1 + tabs.length) % tabs.length];
-            prev.focus(); activate(prev);
-          } else if(key === "Enter" || key === " "){
-            e.preventDefault();
-            activate(t);
-          }
-        }));
       })();
 
       const CART_KEY = "pbe_cart_v1_vouchers";
